@@ -1,0 +1,213 @@
+\chapter{Top physics Phenomenology at the LHC}
+\label{sec:phenomenology}
+\chaptermark{Top physics Phenomenology at the LHC}
+
+In the Standard Model of particle physics, top quark is the up-type quark in the third generation of fermions. It has spin 1/2, electric charge $Q=2/3$ and forms a weak isospin doublet with the bottom quark. It is also charged under the SU(3) group, being a color triplet with three colors. 
+
+As a result, top quark is affected by all three SM forces: the electromagnetic force, the weak force and the strong force. It couples to the respective gauge bosons via the following vertices described in Fig.\ref{fig:ttg}-Fig.\ref{fig:ttgamma} .
+
+\begin{figure}[hbt]
+  \begin{center}
+    \includegraphics[width=0.48\linewidth]{feynman_rules/ttg}
+  \caption{\small Top quark coupling to gluon via strong interaction.  [cite 1709.10508] }
+    \label{fig:ttg}
+  \end{center}
+\end{figure}
+
+\begin{figure}[hbt]
+  \begin{center}
+    \includegraphics[width=0.48\linewidth]{feynman_rules/ttW}
+  \caption{\small Top quark coupling to W boson and bottom quark via weak interaction.}
+    \label{fig:ttW}
+  \end{center}
+\end{figure}
+
+\begin{figure}[hbt]
+  \begin{center}
+    \includegraphics[width=0.48\linewidth]{feynman_rules/ttZ}
+  \caption{\small Top quark coupling to Z boson (right), via weak interaction.}
+    \label{fig:ttZ}
+  \end{center}
+\end{figure}
+
+
+\begin{figure}[hbt]
+  \begin{center}
+    \includegraphics[width=0.48\linewidth]{feynman_rules/ttgamma}
+  \caption{\small Top quark coupling to photon via electromagnetic interaction.}
+    \label{fig:ttgamma}
+  \end{center}
+\end{figure}
+
+\clearpage
+
+Top quark is special among all known six quarks due to its large mass. First discovered at the Fermilab Tevatron collider in 1995 [cite], it ihas a mass that is presently measured to be about 173 GeV, almost as heavy as tungsten atom.  It is the only fundamental fermion that is heavier than W boson, which ihas a mass of about 80 GeV. Due to the large mass difference between top quark and W boson, the phase space for top decay is very large, causing the top quark to decay before being able to form any hadronic bound state. This provide an opportunity for the careful study of QCD as the top quark can be treated as a quasi-free quark during the production and decay processes.
+
+Another reason for the importance of top quark physics is due to the large coupling of top quarks and the newly discovered Higgs boson. As the Yukawa coupling between fermions and Higgs bosons is proportional to the mass of fermion, the top quark has the largest coupling to the Higgs boson. The production of Higgs bosons at the LHC often involves $\ttH$ coupling, in both the dominant production mechanism of gluon-gluon fusion process (Fig.?) and in the associated production of Higgs and $\ttbar$ (Fig.?). Therefore the study of top quark mass and its coupling to the Higgs are critical in testing the validity of Higgs mechanism, which is thought be be responsible for origin of mass via spontaneous symmetry breaking. 
+
+\begin{figure}[hbt]
+	\begin{center}
+		\includegraphics[width=0.48\linewidth]{feynman_rules/ggH}
+		\includegraphics[width=0.48\linewidth]{feynman_rules/ttH}
+		\caption{\small Major higgs production mechanism in LHC. The left figure is via gluon gluon fusion, while right is via $\ttbar$ fusion.  [cite 1709.10508] }
+		\label{fig:ttg}
+	\end{center}
+\end{figure}
+
+
+The Large Hadron Collider, which combines a much higher center of mass energy and a much higher luminosity than the Tevatron, is indeed a top factory, opening the door to more precise measurements of the properties of top quarks.
+
+Many properties of top quark have been carefully studied at the LHC, including the mass of top quark, the cross section of top anti-top pair production, and the spin correlations of top anti-top pair production. A good summary of latest results of top property measurements can be found in the literature. [cite review of LHC top measurement papers] 
+
+Of many properties of top quark, in this thesis we exclusively focus on one particular property of top pair production, namely the "Forward-Backward Asymmetry" ($\AFB$). It is the spatial asymmetry of top quark pair production with respect to the direction of incoming initial quark, as shown in Fig.[?]. At parton level it is defined as 
+\begin{equation}
+\AFB = \frac{N_{\mathrm{t bar t}}(c*>0)-N_{\mathrm{t\bar t}}(c*<0)}{N_{\mathrm{t bar t}}(c*>0)+N_{\mathrm{t\bar t}}(c*<0)}
+\end{equation}
+
+\begin{figure}[hbt]
+  \begin{center}
+    \includegraphics[width=0.48\linewidth]{general_fig/AFB_kin}
+  \caption{\small Top quark coupling to photon via electromagnetic interaction.}
+    \label{fig:ttgamma}
+  \end{center}
+\end{figure}
+
+where $c*\equiv \cos(\theta*)$ and $\theta*$ is the production angle of top quark in $t\bar t$ center of mass frame. This quantity is interesting because according to the SM, $\AFB$ is zero at LO of in perturbative QCD calculation, and becomes non-zero from NLO contributions. A good measurement of $\AFB$ provides a precision test of the SM and is sensitive to contributions from possible non Standard Model contributions. 
+
+In this chapter we will first review the production of top quark pairs in Chapter \ref{sec:Production}-Chapter \ref{sec:production in LHC}. Then, we review the decay of top quarks. Finally, we review the status of forward-backward asymmetry of top quark pair production, which is the main topic this thesis. 
+
+\section{Top Quark Pair Production}
+\label{sec:Production}
+
+\subsection{Leading Order}
+
+In hadron colliders, top anti-top pairs are mostly produced via strong interactions. In the leading order of perturbative QCD (order of $\alpha_s^2$), there are two production mechanisms. The first one is via quark anti-quark annihilation, which we denote as $q\bar{q}$ initiated top pair production. (we use $q\bar q$ process for simplicity sometime in the later chapters of this thesis). The Feynman diagram of this process is shown in Fig.?. The differential cross section is,
+\begin{equation}
+\frac{d\sigma}{dc_*}(q\bar q;M^2) = \frac{\pi\alpha_s^2}{9M^2}\beta\left[1+\beta^2c_*^2+\left(1-\beta^2\right)\right]
+\label{eq:qq_xsec_LO}
+\end{equation}
+where: $M$ is the invariant mass of $t\bar t$ pair, $\beta=\sqrt{1-4m_t^2/M^2}$ is the top quark velocity in the $\TTbar$ center of mass (cm) frame,  $\theta^*$ is the production angle between the initial state quark direction and the top quark direction in the $t\bar t$ cm frame, $c_*\equiv\cos{\theta^*}$, and $\alpha_s\equiv g_s^2/4\pi$ is the strong interaction strength constant which is about 0.12 at the scale of Z boson mass.
+
+\begin{figure}[hbt]
+  \begin{center}
+    \includegraphics[width=0.48\linewidth]{feynman_rules/qq_tt_LO}
+  \caption{\small Feynman diagram for leading order parton level $q\bar q \rightarrow t\bar t$ process via strong interaction. [cite 1709.10508]}
+    \label{fig:qq_tt_LO}
+  \end{center}
+\end{figure}
+
+The second process of top pair production combines the $s,t,u$ channels of the gluon-gluon initiated process (simply denoted as $gg$ process in this thesis), as described by the Feynman diagram in Fig.? The parton level differential cross section of this process in LO reads:
+
+\begin{equation}
+\frac{d\sigma}{dc_*}(gg;M^2) = \frac{\pi\alpha_s^2}{48M^2}\beta\left[\frac{16}{1-\beta^2c_*^2}-9\right]\left\lbrace\frac{1+\beta^2c_*^2}{2}+(1-\beta^2)-\frac{(1-\beta^2)^2}{1-\beta^2c_*^2}\right\rbrace
+\label{eq:gg_xsec_LO}
+\end{equation}
+
+The t and u channel dominated gg process has a distribution that is more peaked in the forward and backward directions, i.e. more likely in the phase space with higher $c*$, compare with $q\bar q$ process. This feature is crucial to motivate our template fit based measurement that is described in Chapter.?, which relies on the discrimination of the $q\bar q$ and $gg$ production mechanisms.
+
+Note that according to Eq.\ref{eq:qq_xsec_LO}, the LO calculation of the $\qqTT$ process does not produce a non-zero $\AFB$, as the differential cross section is even in $c*$. The same is true for the LO calculation of $\ggTT$
+
+\begin{figure}[hbt]
+  \begin{center}
+    \includegraphics[width=1\linewidth]{feynman_rules/gg_tt_LO}
+  \caption{\small Feynman diagram for leading order parton level $gg \rightarrow t\bar t$ process via strong interaction. The s,t,u channels are shown in left,middle,right figures respectively.  }
+    \label{fig:gg_tt_LO}
+  \end{center}
+\end{figure}
+
+\clearpage
+
+\subsection{Next to Leading Order Corrections}
+\label{sec:LO production}
+The higher order corrections to top pair production are important due to the sizable value of strong interaction coefficient $\alpha_s\sim 0.1$ at the energy scale of this process. As the energy scale of top pair production is set by the large mass of top quark (173 GeV) the perturbative QCD calculation is able to give accurate predictions. 
+
+Currently, Next-to-Leading-Order calculations are regarded as the standard for event generation and simulation of top-quark production by the LHC experiments. These are implemented in several event generators.  The generators used in this thesis are Powheg-box [cite] and aMC@NLO [cite]. The impact of the NLO contributions to the total cross section compared with the LO contributions can be as large as 30\% [cite]. The NLO corrections also have sizable effects on the shapes of many top quark kinematic distributions. 
+
+More importantly, NLO processes are the lowest higher-order processes that generate a non-zero forward-backward asymmetry via the SM. As a result, we will limit our discussion of higher-order QCD effects in top quark pair production to the NLO processes that contribute to $\AFB$.
+
+At parton level, the dominant sources of non-zero $\AFB$ are the NLO corrections to the process of $\qqTT$. The asymmetry originates from the interference of virtual radiation of gluon (box diagram) in Fig.(c) and Born process (LO) of $\qqTT$ in Fig.(d). [cite Kuhn and Rodrigo 98']. In order to avoid the infrared divergences when the momenta of the virtually radiated gluon in Fig. (c) go to zero, it has to be summed with the interference between initial state and final state real gluon emission of $\qqTT$, which are described by Fig. (a) and Fig (b) . The inclusive asymmetry from this source is positive, between 6\% and 8\% in most of the kinematic regions that can be probed in Tevatron or LHC. [cite Kuhn 2011] 
+
+\begin{figure}[hbt]
+	\begin{center}
+		\includegraphics[width=0.8\linewidth]{feynman_rules/qqTT_NLO}
+		\caption{\small Feynman diagram of next-to-leading order $\ttbar$ production that contributes to $\AFB$. In the figure, q indicates light quark, Q represent heavy flavor quark, in our case, top quark. [cite Kuhn]}
+		\label{fig:qqTT_NLO}
+	\end{center}
+\end{figure}
+
+Another non-negligible source of $\AFB$ is from the interference of QCD induced $t\bar t$ production and electromagnetic (QED) induced $t\bar t$ production. The color singlet configuration of QCD box diagram, Fig.? , interferes with the s-channel $t\bar t$ production via photon, which is also color singlet.
+
+Because some of the QCD contributions to $\AFB$ originate from NLO terms involving real gluon radiation, this thesis actually studies the $\AFB$ observed in $t\bar t +\mathrm{jet}$ production, where jet refers to the hadronized products of an extra quark or gluon. As a consequence of the additional jet allowed, another process that is predicted to produce non-zero $\AFB$ should be mentioned, the so-called "flavor excitation" in the $\qgTT$ channel. It originates from the interference terms of the amplitudes for the quark-gluon scattering. Like radiative corrections for $\qqTT$, the matrix element of this calculation has the order of $\alpha_s^3$, and the relevant Feynman diagrams are shown in Fig.?. The parton level $\AFB$ originating from $\qgTT$ is much smaller than that from $\qqTT$ process.
+
+\begin{figure}[hbt]
+	\begin{center}
+		\includegraphics[width=0.8\linewidth]{feynman_rules/qg_NLO}
+		\caption{\small Feynman diagram of next-to-leading order $\ttbar+q$ production via quark gluon initial states, that contributes to $\AFB$. In the figure, q indicates light quark, Q represent heavy flavor quark, in our case, top quark. [cite Kuhn]}
+		\label{fig:gg_tt_LO}
+	\end{center}
+\end{figure}
+
+In the energy scale studied in this thesis, where the partonic center of mass energy $\sqrtS$ is below 1 TeV, the contributions of the order $\alpha^3$ corrections to the $\qqbar$ process, the interference of QCD-QED, and the $\qgTT$ process to the partonic level $\AFB$ are about 7\%, 1\% and 0.1\%, respectively.  In addition, the differential asymmetry defined in Eq.? is approximately a linear function of $\cstar$ for both $\qqbar$ and QCD-QED interference terms, while it is approximately quadratic for $\qgTT$ terms. For both reasons, we attempt to measure the $\AFB$ originating from the $\qqTT$ process from our data and correct the measured value for the $\qgTT$ contributions using MC simulation.
+
+There is one subtlety when we use NLO MC simulated events to estimate the $\AFB$ and compare that value with the analytic calculations of \cite{Kuhn&Rodrigus}. In \cite{Kuhn&Rodrigus}, the symmetric part of the cross section is calculated at LO ( $\alpha_s^2$ ), while the direct counting result from the NLO MCs use the NLO cross section for the symmetric part of the $\qqTT$ process.  Given that the NLO corrections increase the total cross section of this process by up to 30\%, this means the $\AFB$ derived by direct counting from the NLO MCs is only 0.7 times the value from theoretical prediction given in \cite{Kuhn&Rodrigus}.              
+
+\subsection{Top Quark Production in Hadron Colliders}
+\label{sec:production in LHC}
+
+In previous sections, we have described the parton level production of top anti-top pairs according to the SM. In reality, quarks are never observed as isolated free particles. Because of the strong interaction, it is the colorless bound states of quarks: mesons (quark-antiquark pairs) such as pions and bayons (three quarks) that are actually observed in both the initial and final states of any scattering experiments. Because of the coupling constant of the strong interaction is very large at the low mass scales of the hadrons, detailed calculations of particle processes are not possible using perturbation theory. However, because of the asymptotic freedom property of QCD, it can be shown that the phase space and kinematic distributions of scattering involve strong interactions can be described by a hard process in which large momentum transfer happens. An intuitive understanding is during the hadronization any process with large momentum transfer is suppressed as it corresponds to small coupling constant, so the hadronization products are are produced only at small center-of-mass energies with respect to each other and they are nearly collinear with the original quasi-free particles involved in the hard scattering process. 
+
+Another result of asymptotic freedom in QCD is the factorization theorem, which says the cross section for the scattering of hadrons can be calculated by convolving the parton distribution functions (PDF) that describe the distributions of momentum fractions carried by the partons that form the scattered hadron,  with the cross section for hard scattering process. We some times call the hard scattering process the parton level process. So the total cross sections for $\ttbar$ production in proton-proton or proton anti-proton collider can be represented in the following way:
+
+\begin{equation}
+\sigma_{p_1p_2\rightarrow \ttbar} = \sum_{(i,j)\in(q,\bar q,g)}\int_{0}^{1}\int_{0}^{1}(\sigma_{ij\rightarrow\ttbar})D_i^{p_1}(x_1,Q)D_j^{p_2}(x_2,Q)dx_1dx_2  
+\end{equation}  
+
+where $p_1,p_2$ can be either proton or anti-proton depending on the type of collider. $D_i^{p_1}(x,Q)$ is the PDF, which gives the differential probability that a parton, such as an up-quark, shares the fraction $x$ of the momentum of its parent hadron of type $p_1$ (proton or anti-proton). Note that the PDF also depends on the energy scale Q of the hard process. Similarly, differential cross sections in hadron collisions can also be factorized by the convolution of the PDFs and parton level differential cross sections.
+
+The PDF are determined experimentally by fitting data from hadron scattering and deep inelastic scattering experiments. One example of a proton PDF at the energy scale of $\ttbar$ production is shown in Fig.? below. It shows that the valence quarks in the proton (consisting of two up-quarks and one down-quark), the up- and down-quarks, tend to carry larger fractions of the proton momentum than the fractions carried by sea quarks, such as $\bar u$ and $\bar d$ quarks, and gluons.  
+
+The parton distribution functions have major consequences for the dominant production mechanisms of top quarks at the LHC and the Tevatron. The kinematic constraint of $\ttbar$ production requires that the center-of-mass energy of the initial partons (which is also the invariant mass of produced $\ttbar$ pairs) $\sqrtS=\mtt=\sqrt{x_1x_2s}$ ($s$ is the proton-proton or proton-antiproton center-of-mass energy), to be at least two times the mass of top quarks, which is about 345 GeV. Such a large energy requirement indicate that both partons need to carry sufficiently large fractions of the energies of the collided hadrons to produce $\ttbar$ pairs.  
+
+In Tevatron which is a proton anti-proton collider, the dominant parton level production mechanism of $\ttbar$ is via $\qqbar$ initial states (about 90\%). This is because both the initial quark and anti-quark could be valence quarks from proton or anti-proton in the collision, thus are more likely than initial state gluons to carry sufficient momentum for $\ttbar$ production. In contrast, the majority of $\ttbar$ pairs in LHC is produced via gg fusion process, as LHC is a proton-proton collider and it is unlikely for an anti-quark to carry sufficient momentum. Therefore, the $\qqTT$ subprocess is only about 10\% of the total $t\bar t$ cross section at the LHC at 8 TeV. 
+
+The consequence is that the $\ttbar$ $\AFB$ at the LHC is much smaller than that at the Tevatron due to the dilution by the forward-backward symmetric $\ggTT$ process. Another challenge is that at the Tevatron because of the valence antiquarks in antiproton beam, initial quark is almost always along the same direction of initial proton, so we can choose the direction of initial proton as the positive direction when we determine the production angle $\cstar$. In contrast, in LHC the initial beam configuration is forward-backward symmetric. This makes the inference of quark direction at parton level more difficult. The solution for this problem follows from the observation that the quark in the $\qqTT$ process likely carries more momentum than anti-quark. So the direction of direction of $\qqbar$ c.m system is usually the initial quark direction, especially in the case where the difference of momentum fraction of initial quarks, $|x_f| = |x_1-x_2|$ is larger, i.e. the $t\bar t$ c.m. system has higher boost in longitudinal direction.  
+
+\section{Top Decay}
+\label{sec:Decay}
+ 
+The top quark decays via weak interaction almost exclusively to a W boson and a bottom quark due to the form of CKM matrix, where $|v_{tb}\sim1$. In addition, because of the mass of top quark 173 GeV is much larger than the mass of W boson, the top quark decay width is so large that the top quark decays happens in a shorter time than the hadronization time. Therefore, top quark decay can be calculated with perturbative QCD very accurately.
+ 
+The final states of $\ttbar$ events can be categorized based on the decay mode of the two W bosons. W bosons decay weakly to a quark anti-quark pair (u,d,c,s type),which is called hadronic decay, or to a lepton-neutrino pair (leptonic decay).  Therefore, there are three different experimental decay topologies for $\ttbar$ pairs:
+ \begin{itemize}
+ 	\item All-hadronic: Both W bosons decay hadronically, $\ttbar\rightarrow b \bar b jjjj$
+ 	\subitem The most abundant decay mode, which is about 44\% of all $t\bar t$ events, as shown in Fig.\ref{fig:TT_composition}. It is not as clean as the other two channels, with large W+jets and QCD multijet backgrounds.
+ 	\item Semileptonic: One of the W bosons decays leptonically and the other decays hadronically , $\ttbar \rightarrow b\bar b l\nu j j$.  The Feynman diagram is shown in Fig.\ref{fig:TT_semileptonic}
+ 	\subitem We only consider the case where lepton is electron or muon, and ignore the case where lepton is tau, because tau will quickly decay which is complicated to reconstruct. 
+ 	\subitem This channel is optimal for studying $\AFB$ for several reasons: It is relatively clean due to the requirement of a electron or muon and two bottom quarks; it is relatively abundant, about 30\% of all $\ttbar$ events, providing sufficient statistics for the measurement; It has only one neutrino, making it relatively easy to correctly reconstruct the momentum of top and anti-top from their decay products.  
+ 	\item Dileptonic: Both W bosons decay leptonically, $\ttbar \rightarrow b \bar b ll\nu\nu$
+ 	\subitem This is the cleanest channel, due to the requirement of two leptons. The problem is the relative small abundance ( about 4\%), and existence of two neutrinos makes reconstruction of top anti-top momentum challenging, thus not suitable for our purpose.  
+ \end{itemize}  
+
+As mentioned in Section.\ref{sec:LO production}, we allow an extra hard gluon from the ISR or FSR radiation processes associated with $\ttbar$ production. As a result, the final state studied in this thesis is $l+4/5\mathrm{jets}+\mathrm{MET}$, where MET means missing transverse energy which corresponds to the transverse momentum of the unobserved neutrino. 
+
+\begin{figure}[hbt]
+	\begin{center}
+		\includegraphics[width=0.6\linewidth]{general_fig/top_pair_branching_frac}
+		\caption{\small The branching fractions of all channels of $\ttbar$ productions.}
+		\label{fig:TT_composition}
+	\end{center}
+\end{figure}
+
+\begin{figure}[hbt]
+	\begin{center}
+		\includegraphics[width=0.6\linewidth]{general_fig/feynman_ttbar_ljets_beamline}
+		\caption{\small The Feynman diagram of semileptonic decay of $\ttbar$ pairs. There is another decay process with $W^-\rightarrow l^-\bar \nu$ not shown here.}
+		\label{fig:TT_semileptonic}
+	\end{center}
+\end{figure}
+
+ 
+\section{Forward Backward Asymmetry}
+\label{sec:AFB}
+
+In this section I will give an overview of the status of current AFB and $A_C$ measurement in Tevatron and LHC.

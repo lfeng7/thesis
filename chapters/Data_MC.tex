@@ -1,0 +1,251 @@
+\chapter{Process Modeling and Software Setup}
+\label{sec:modelling}
+
+In LHC, huge amount of collision events are produced. Among them, only a very small fraction of events are those that of interest for most physics analysis. The majority of events produced in LHC is soft QCD process. As shown in Fig.\ref{fig:pp_xsec}, in LHC at 8 TeV, the cross section of $\ttbar$ production process, which is the signal process in this thesis, is about 10 orders of magnitudes smaller than the total production cross section of LHC. 
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.7\linewidth]{general_fig/figs_pdf_crosssections2010}
+	\caption[Cross sections for various physcis processes in hadron coliders]
+	{Cross sections for various physcis processes in hadron coliders, corresponding to collision energy, taken from \cite{Plehn:2009nd}. Three different energy for LHC marked in the figure corresponds to 7,10 and 14 TeV.}
+	\label{fig:pp_xsec}
+\end{figure}
+
+This thesis measures the $\AFB$ originated from $\qqTT$ process, as well as relative ratio of $\qqTT$ production among all production mechanisms of $\ttbar$ in LHC. In order to achieve an accurate measurements with low statistical uncertainties, we want to apply selection on the collected events that strikes a balance between increasing signal background ratio and still maintain a reasonable signal efficiency so there are sufficient amount of events left post selection.
+
+The selection criteria is designed based on the topology of our signal events, as well as the features of major background processes. Our signal is semileptonic $\ttbar$ events, described in Fig.\ref{fig:TT_semileptonic_1}, with a final state of one high $\pt$ electron or muon plus four or five energetic jets, two of them are originated from bottom quarks. The detailed selection critiria is given in Section.\ref{sec:event_selection}.
+
+\begin{figure}[hbt]
+	\begin{center}
+		\includegraphics[width=0.6\linewidth]{general_fig/feynman_ttbar_ljets_beamline}
+		\caption [The diagram of semileptonic decay of $\ttbar$ pairs.]
+		{\small The diagram of semileptonic decay of $\ttbar$ pairs. There is another decay process with $W^-\rightarrow l^-\bar \nu$ not shown here.}
+		\label{fig:TT_semileptonic_1}
+	\end{center}
+\end{figure}
+
+Even after selection, there are still various processes that form the irreducible background of the measurement. In this chapter, the origin and modeling of the signal and irreducible background processes are discussed. In addition, the software set up for the analysis, including simulation, data sample preparation, and fitting, is provided.
+
+
+\section{Signal and background process modeling}
+
+\subsection{Monte-Carlo Simulation}
+Most of the signal and background processes are modeled by MC simulation. The simulation process is usually in several steps. 
+
+The first step is to generate events based on the hard scattering process at parton level, using dedicated Monte-Carlo event generator. The generation of hard process is based on the Matrix Element calculated using QFT, as described in Section.\ref{sec:ME}. The ME generator can generate events with a few hard radiated partons due to computational complexities. The products of this step are referred to the parton-level or generator-level particles, and the information about these particles, such as particle type, charge, momentum is referred as generator truth in later chapters of the thesis.
+
+The additional initial state/ final state radiated gluons are produced using a different event generator in the second step, which is denoted as Parton Showering (PS) process. A special matching procedure is performed between the particles generated in ME step and particles in PS step to avoid duplicates of additional partons. 
+
+The third step is the fragmentation/hadronization step, which takes the partons generated in PS step and form stable hadrons. As hadronization is non-perturbative, a phenomenological model called Lund String Model is adopted for this purpose. The decay of stable hadrons are simulated by taking the well know fraction ratio. 
+
+The last step of the simulation chain is to simulate the propagation of all the stable particles in CMS detector, and the detector response in all sub detectors of CMS. This step is performed using the dedicated detector simulation software.
+
+The entire simulation chain is demonstrated in Fig.\ref{fig:mcchain}. All the signal and background process simulations follow the same procedures described in this section, with different choices of generators in ME or PS steps.
+
+All MC simulated events are produced by the SUMMER12 central MC production campaign by CMS.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.7\linewidth]{general_fig/MC_chain}
+	\caption[MC chain in CMS]
+	{An illustration of entire Monte-Carlo Simulation chain in CMS. \cite{Goerner:1754332}}
+	\label{fig:mcchain}
+\end{figure}
+
+
+\subsection{Signal process modeling}
+The signal process in this thesis is semileptonic $\ttbar$ production. Specifically, we look at the $\ttbar$ production processes with one of the W decays to electron or muon, and another W decays to a pair of light flavor jets. The process where one of the W decays to tau lepton is not treated as signal process, due to the complexity of tau further decay process and poor reconstruction of taus in CMS.
+
+The signal process is modeled using the inclusive $\ttbar$ events generated with aMC@NLO ME generator \cite{aMC@NLO}, which is an NLO event generator. The parton showering is done using Pythia PS generator \cite{Pythia}. Due to the matching scheme used in aMC@NLO, the generated events are weighted, with some events having negative weights to account for the duplication of Pythia generated events \cite{MC@NLOmatching}. 
+
+An alternative version of signal sample is also considered, generated using POWHEG ME generator and use Pythia for parton showering. POWHEG is another NLO generator \cite{powheg} that has the advantage of easy interface with Pythia for parton showering, and all positive weights. We use Powheg signal sample for studying the sensitivity of measurement with respect to the choice of signal modeling in this thesis. Another relevance of POWHEG sample in this thesis is that we use the generator level information of POWHEG generated $\ttbar$ events in the feasibility studies of the analysis method. 
+
+In order to get the semileptonic $\ttbar$ events from the inclusive $\ttbar$ MC sample, the generator truth information is used to select true semileptonic decay events, where one of the W boson decays leptonically, another decays hadronically.  
+
+\subsection{Background process modeling}
+The requirement of a high quality lepton and two b-jets, together with requirements on minimum transverse momentum for all the final state particles, can effectively reduce vast majorities of background events, especially the dominant QCD multijet process. Still, there are several processes have non-negligible contribution in the final events that are used for the later analysis. These processes are called irreducible backgrounds, and need detailed and careful modeling. In most cases, the background processes are modeled by dedicated MC simulations. In the case of QCD multijet background, a data driven approach is taken as it is unfeasible to model this process purely with MC.
+
+\subsubsection*{Non semileptonic $\ttbar$}
+One of the major irreducible background is fully hadronic or fully dileptonic $\ttbar$ events. The hadronic $\ttbar$ final states have two b-jets and four light flavor jets. With one of the light flavor jet mis-identified as electron (or muon, though less likely), some of the hadronic $\ttbar$ events can pass all selections. The fully leptonic $\ttbar$ event is consist of two high $\pt$ leptons and two b-jets and large missing energy from the two neutrinos of W decays. With one of the lepton not being identified, combining with additional high $\pt$ jets either from ISR/FSR radiation during the $\ttbar$ production or from QCD multijets process, this process can fake signal events too. Another process that can fake signal is the case where one of W decays to tau, that further decays to hadrons, and another W decays to electron or muon. 
+
+The reason why we categorize these process as background instead of signal despite the fact that these are true $\ttbar$ production process is that the later top quark kinematic reconstruction procedure is designed for semileptonic $\ttbar$ only. As the result, any non semileptonic $\ttbar$ event will be poorly reconstructed.
+
+The modeling of non semileptonic $\ttbar$ background is from the same inclusive $\ttbar$ sample used in signal process modeling, and select the events that is not semi-leptonic decay of $\ttbar$ using the generator truth embedded in the simulation information.
+
+\subsubsection*{Single top production}
+A major background in this analysis, single top production events can be very similar topologically to the signal process. The representing Feynman diagrams for single top production in s,t and tW channels are shown in Fig.\ref{fig:singletop}.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=1.0\linewidth]{feynman_rules/single_top}
+	\caption[Single top production feynman diagrams]{The Feynman diagrams of s,t and tW channel of single top production, from left to right.\cite{Lannon:2012fp}}
+	\label{fig:singletop}
+\end{figure}
+
+The modeling of this background is via MC simulation using POWHEG as ME generator and interface with Pythia for parton showering. 
+
+\subsubsection*{W+Jets}
+The production of W boson with several associated jets is another non-negligible background. Although the kinematic distribution and final states from W+Jets process is very different from the $\ttbar$ process, due to the large production cross section of this process it is still possible for some events to pass all selections.
+
+This process is modeled by using MadGraph event generator \cite{madgraph5}, a popular leading order ME event generator, interfaced with Pythia for parton showering. Note here for the MC samples used for modeling this process, the additional jets produced associated with W boson is handled by the ME generator up to 4 additional jets, and beyond 4 jets production the extra jets are handled in PS step, due to the computational complexities introduced by the large combinatorics by adding more jets. For this reason, as well as other known limitations of the simulation of W+Jets process, the normalization and potentially kinematic distribution predicted by the simulation is not accurate enough.   
+
+Two measures are taken in order to mitigate the poor modeling of the W+Jets process. First in the event selection, two b-tagged jets are required, which significantly reduced the fraction of W+Jets background to the level of about 1\%. The second measure is to determine the normalization of this process via a template fit, together with the measurement of $\AFB$ that is described in Section.\ref{sec:analysis scheme}.
+
+\subsubsection* {Data Driven QCD Multijet Background}
+\label{sec:data driven qcd}
+
+QCD Multijet process has enormous total cross sections and extremely low selection efficiency in our analysis. As a result, we cannot rely on MC simulated events to produce background templates for this process. Instead, we use a data driven approach by selecting the Data events that are in the side-band region of the phase space. The side band region is defined by inverting the selection criterion for electrons, including both RelIso and electron ID. Therefore the side band region is completely orthogonal to signal region, and suppose to be mostly dominated by QCD Multijet events. 
+
+There are still contamination of other background events and signal events in side band region. We take the Data events in sideband region with events from other processes subtracted. The rest of events are assumed to be entirely consist of QCD multijet process. We assume the shape of kinematic distributions of QCD events in sideband region to be the same as that in signal region, but with different normalization due to very different selection efficiency. 
+
+In order to estimate the normalization of QCD events in signal region based on the total number of events in sideband region, we follow the ABCD method. This method involves define more side band regions that are correlated in the same fashions as the signal region and sideband region defined above. 
+
+Our choice of selection criteria for ABCD(EF) regions are defined in Fig.[\ref{fig:ABCD-def}].  Control plots are shown in Fig.[\ref{fig:ABCD-MET}]. Based on ABCD method, we compute conversion factor as defined in Table.[\ref{tab:ABCD - QCD numbers}], and apply the conversion factor to get an estimate of number of events for QCD Multijet process in signal region. Note that in order to calculate conversion factors, the expected number of "background" contaminated events are subtracted from number of data events in each region. 
+
+Based on the conversion factor calculated from ABCD method, and the number of observed events in C region, we expect 547 events from QCD multijet process, and we assigned a conservative uncertainty of 20\% in the nuisance parameter $R_{QCD}$ in our template fit. 
+
+The data events in region C ( with contamination removed ) are then reconstructed as $t\bar{t}$ final states, and become the QCD template in $e+jets$ channel. Since the template fit method depends mostly on the difference in distribution of signal and background processes, the expected QCD event rate is not very crucial, as we choose to determine the proper event rate in template fit. So the number of QCD events we estimated in this section is merely a reasonable initial value for the template fit. 
+
+\begin{figure}[hbt]
+	\begin{center}
+		\includegraphics[width=0.8\linewidth]{appendix/ABCD_region_def}
+		\caption{\small The selection criterion for different regions of side-band and signal region.}
+		\label{fig:ABCD-def}
+	\end{center}
+\end{figure}
+
+\begin{figure}[hbt]
+	\begin{center}
+		\includegraphics[width=1.0\linewidth]{appendix/ABCD_control_plots}
+		\caption{\small The missing transverse energy for $e+jets$ events in ABCD(EF) regions. The MC events are in solid color, and data events are in solid dots with error bars. The number of data events in each region is labeled as number of entries in upper right corner of each individual figure. }
+		\label{fig:ABCD-MET}
+	\end{center}
+\end{figure}
+
+\begin{table}[htb]
+	\centering
+	\begin{tabular}{c|cc|cccc}
+		Method & predicted QCD events  &  $\sigma_{N_{QCD}}$ & $R_{QCD}$ & $\sigma_{R_{QCD}}$ \\
+		\hline
+		$N_{QCD}$ in D = B/A*C      &  547 &   52 &          1.3\% &         0.12\%  \\
+		$N_{QCD}$ in D = F/E*C      &  435 &   129 &          0.98\% &         0.293\%  \\
+		\hline
+	\end{tabular}
+	\caption{Expected number of QCD events in signal region based on the observed data events in side band C region and the conversion factor calculated from A/B and/or E/F regions. $\sigma_{N_{QCD}}$ and $\sigma_{R_{QCD}}$ are corresponding uncertainties assuming the number of observed events in each region follows Poisson distributions. }
+	\label{tab:ABCD - QCD numbers}
+\end{table}
+
+
+\section{Data and MC Samples}
+\label{sec:samples}
+
+\subsection{Software}
+The reconstruction and the analysis of the data used in this study can be divided into three stages.  The first stage involves the selection and storage of lepton and jet particle flow objects from AOD to B2G PATuples.  Simulated events also include generator level information.  This stage is done by B2G group using CMSSW 5.3.X release and TLBSM 53x version 3 code \cite{B2G_twiki}.  In the second stage, lepton ID tags, b-tagging discriminant information, and PDF weights (simulation only) are added.  The  CMSSW 5.3.24-based JHU Ntuplizer, developed for several B2G analyses, is used to generate EDM Ntuples.  In the third stage, the final event selection, top quark reconstruction, and template fit are performed. The third stage is independent of CMSSW although the CMSSW 7.2.0 environment is used to access ROOT version 5.34.18cms12. The template fit is performed using Theta package \cite{muller2010theta}.
+  
+\subsection{Data}
+The full 2012 LHC run dataset recorded by CMS detector, listed in Table~\ref{tab:datasets}, is used.  It represents proton proton collision at center of mass energy of 8 TeV with integrated luminosity of $19.7 \pm 0.5 fb^{-1}$.  
+To synchronize the trigger efficiency for Data and MC simulations, the following offline HLT requirements are applied to both Data and MC.
+\begin{itemize}
+\item electron+jets channel: \texttt{HLT\_Ele27\_WP80\_v*}
+\item muon+jets channel: \texttt{HLT\_IsoMu24\_eta2p1\_v*}
+\end{itemize}
+Only lumi-sections included in list of certified good runs provided in the following JSON file are included in the analysis. 
+\begin{itemize}
+\item \texttt{Cert\_190456-208686\_8TeV\_22Jan2013ReReco\_Collisions12\_JSON.txt}
+\end{itemize}
+
+\begin{table}[h!]
+\small
+\caption{\small Single Electron/Muon Datasets}
+\centering
+\begin{tabular}{| p{2.55 cm}  p{8.5 cm}  p{3 cm} |}
+\hline
+
+\multicolumn{2}{|l}{\textbf{Dataset}} & \textbf{Integrated Luminosity ($\displaystyle{pb^{-1}}$)}\\[0.5ex]
+\hline
+\multicolumn{2}{|l}{\texttt{/SingleMu/Run2012A-22Jan2013-v1/AOD}} & 888\\
+\multicolumn{2}{|l}{\texttt{/SingleMu/Run2012B-22Jan2013-v1/AOD}} & 4442\\
+\multicolumn{2}{|l}{\texttt{/SingleMu/Run2012C-22Jan2013-v1/AOD}} & 7110\\
+\multicolumn{2}{|l}{\texttt{/SingleMu/Run2012D-22Jan2013-v1/AOD}} & 7308\\
+\multicolumn{2}{|l}{\texttt{/SingleElectron/Run2012A-22Jan2013-v1/AOD}} & 888\\
+\multicolumn{2}{|l}{\texttt{/SingleElectron/Run2012B-22Jan2013-v1/AOD}} & 4442\\
+\multicolumn{2}{|l}{\texttt{/SingleElectron/Run2012C-22Jan2013-v1/AOD}} & 7110\\
+\multicolumn{2}{|l}{\texttt{/SingleElectron/Run2012D-22Jan2013-v1/AOD}} & 7308\\
+
+\hline
+\multicolumn{2}{|l}{\textbf{Total Analyzed Integrated Luminosity}} & 19748\\
+\hline
+\end{tabular}
+\label{tab:datasets}
+\end{table}
+
+
+\subsection{Monte Carlo Simulation}
+
+This analysis requires large samples of fully simulated events to generate the different parts of the likelihood functions.  Because the likelihood functions are built by reweighting Standard Model $t\bar t$ events, no special simulated samples are required.  The samples used to model the signal and background functions, including the choice of generator and parton distribution functions, are listed in Table~\ref{tab:sim_samples}. All MC samples were generated in the official CMS Summer12 MC production campaign. More details about the simulated samples used can be found on the B2G Twiki \cite{B2G_twiki}.
+
+In order to build templates of likelihood functions all MC samples are normalized to the corresponding integrated luminosity of data. This is done given the number of simulated events generated and total cross sections of each individual process listed in Table~\ref{tab:sim_samples2}. In addition, they are corrected using various scale factors to account for known discrepancies between data and simulation, as discussed below in Section~\ref{sec:corrections}.
+
+\begin{table}[h!]
+\small
+\caption{\small Monte Carlo Simulation Information I}
+\centering
+\begin{tabular}{| p{2.55 cm} |  p{10 cm} |}
+\hline
+\textbf{Simulated Process} & \textbf{MC Dataset} \\[0.5ex]
+\hline
+$\displaystyle{t\bar{t}}$                    & \texttt{TT\_8TeV-mcatnlo}               \\
+$\ttbar$ (alternative)  & \texttt{TT\_CT10\_TuneZ2star\_8TeV-powheg-tauola } \\
+$\displaystyle{W}$+1 Jet                & \texttt{W1JetsToLNu\_TuneZ2Star\_8TeV-madgraph}               \\
+$\displaystyle{W}$+2 Jets               & \texttt{W2JetsToLNu\_TuneZ2Star\_8TeV-madgraph}               \\
+$\displaystyle{W}$+3 Jets               & \texttt{W3JetsToLNu\_TuneZ2Star\_8TeV-madgraph}                \\
+$\displaystyle{W}$+4 Jets               & \texttt{W4JetsToLNu\_TuneZ2Star\_8TeV-madgraph}                \\
+$\displaystyle{Z/\gamma}$+1 Jet         & \texttt{DY1JetsToLL\_M-50\_TuneZ2Star\_8TeV-madgraph}          \\
+$\displaystyle{Z/\gamma}$+2 Jets        & \texttt{DY2JetsToLL\_M-50\_TuneZ2Star\_8TeV-madgraph}         \\
+$\displaystyle{Z/\gamma}$+3 Jets        & \texttt{DY3JetsToLL\_M-50\_TuneZ2Star\_8TeV-madgraph}         \\
+$\displaystyle{Z/\gamma}$+4 Jets        & \texttt{DY4JetsToLL\_M-50\_TuneZ2Star\_8TeV-madgraph}          \\
+$\displaystyle{t}$ (s-channel)          & \texttt{T\_s-channel\_TuneZ2star\_8TeV-powheg-tauola}          \\
+$\displaystyle{t}$ (t-channel)          & \texttt{T\_t-channel\_TuneZ2star\_8TeV-powheg-tauola}         \\
+$\displaystyle{t}$ (tW-channel)         & \texttt{T\_tW-channel-DR\_TuneZ2star\_8TeV-powheg-tauola}       \\
+$\displaystyle{\bar{t}}$ (s-channel)    & \texttt{Tbar\_s-channel\_TuneZ2star\_8TeV-powheg-tauola}       \\
+$\displaystyle{\bar{t}}$ (t-channel)    & \texttt{Tbar\_t-channel\_TuneZ2star\_8TeV-powheg-tauola}        \\
+$\displaystyle{\bar{t}}$ (tW-channel)   & \texttt{Tbar\_tW-channel-DR\_TuneZ2star\_8TeV-powheg-tauola}    \\
+\hline
+\end{tabular}
+\label{tab:sim_samples}
+\end{table}
+
+\begin{table}[h!]
+\small
+\centering
+\begin{tabular}{| p{2.55 cm} | p{4 cm} | p{2 cm} | p{2 cm} |}
+\hline
+\textbf{Simulated Process} & \textbf{Matrix Element Generator} & $\displaystyle{N^{Events}_{Generated}}$ & \textbf{ $\sigma$ ($\displaystyle{pb}$)}\\[0.5ex]
+\hline
+$\displaystyle{t\bar{t}}$               & \texttt{aMC@NLO}  & 32852589 & 245.8			\\
+$\ttbar$ (alternative)               & \texttt{POWHEG}  &  21560109 & 245.8			\\
+$\displaystyle{W}$+1 Jet                & \texttt{MADGRAPH}              & 23038253 & 6662.8 \\
+$\displaystyle{W}$+2 Jets               & \texttt{MADGRAPH}              & 33993463 & 2159.2 \\
+$\displaystyle{W}$+3 Jets               & \texttt{MADGRAPH}              & 15507852 & 640.4  \\
+$\displaystyle{W}$+4 Jets               & \texttt{MADGRAPH}              & 13326400 & 264.0  \\
+$\displaystyle{Z/\gamma}$+1 Jet         & \texttt{MADGRAPH}         	   & 23994669 & 660.6  \\
+$\displaystyle{Z/\gamma}$+2 Jets        & \texttt{MADGRAPH}         & 2345857 & 215.1  \\
+$\displaystyle{Z/\gamma}$+3 Jets        & \texttt{MADGRAPH}          & 10655325 & 65.79  \\
+$\displaystyle{Z/\gamma}$+4 Jets        & \texttt{MADGRAPH}          & 5843425 & 28.59  \\
+$\displaystyle{Z/\gamma}$+4 Jets        & \texttt{MADGRAPH}          & 5843425 & 28.59  \\
+$\displaystyle{t}$ (s-channel)          & \texttt{POWHEG}        & 259176 & 3.79   \\
+$\displaystyle{t}$ (t-channel)          & \texttt{POWHEG}       & 3748155 & 56.4   \\
+$\displaystyle{t}$ (tW-channel)         & \texttt{POWHEG}      & 495559 & 11.1   \\
+$\displaystyle{\bar{t}}$ (s-channel)    & \texttt{POWHEG}     & 139604 & 1.76   \\
+$\displaystyle{\bar{t}}$ (t-channel)    & \texttt{POWHEG}     & 1930185 & 30.7   \\
+$\displaystyle{\bar{t}}$ (tW-channel)   & \texttt{POWHEG} & 491463 & 11.1   \\
+\hline
+\end{tabular}
+\caption{\small Generator information and number of simulated events from Summer12 production of CMS.}
+
+\label{tab:sim_samples2}
+\end{table}
+
+
+
+

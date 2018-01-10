@@ -1,0 +1,236 @@
+
+\chapter{Theoretical Background}
+\label{sec:introduction}
+\chaptermark{Introduction}
+In this chapter, I will give a brief overview of the Standard Model (SM) of particle physics and the technical methods used to calculate experimental observables using Quantum Field Theory (QFT). First, an overview of the particle content and the interactions of the Standard Model is introduced. Then the theoretical formalism of QFT is briefly reviewed: the experimental and physical meaning of decay rates and cross sections; the connection between scattering amplitudes and cross sections; and Lagrangian densities and gauge invariance. Finally, the formalism of perturbative calculation and the Feynman Calculus is introduced. This chapter provide the context for all the discussions in following chapters.
+
+Due to the technical complexity of this topic, I will give only important results and recipes without providing proofs or derivations. More detailed descriptions of this topic can be found in [\cite{Peskin, PDG, Griffith}]
+
+
+\section{Standard Model}
+\label{sec:1.2}
+The Standard Model (SM) of particle physics is a description of nature built upon quantum field theory (QFT) and the principle of gauge symmetry that explains the fundamental building blocks of matter and their interactions. It has been proven extremely successful in explaining all observed experimental data. It has also made a number of predictions including the unseen W and Z bosons which were discovered in 1983.  We will briefly summarize the particle content and the interactions of the SM, as a particle physicist's view of the universe.
+
+Using the language of QFT, both matter and interactions are fields which are continuous in space and time, and elementary particles are the quanta of the corresponding fields. Particles are point-like, structureless objects that are fully described by their masses, spins, and various charges. The strengths of their interactions depend on the values of their charges. They are not static, but dynamic in nature, meaning that they can change into other particles, or be produced in matter-antimatter pairs from vacuum, or annihilate with their anti-partners. All these processes are described in the language of interaction vertices, where momentum, charge, spins, and some other quantities are conserved. 
+
+In the SM, the fundamental building blocks of matter are fermions, which are spin 1/2 particles. They are further divided into two groups, leptons and quarks. Both leptons and quarks are divided into three generations where each generation is similar in every way except for the masses of its members. Leptons include electrons, muons, taus and three corresponding neutrinos of the same flavor. Charged leptons carry electric charge Q=-1, whereas their corresponding neutrinos are neutral particles. The six quarks are also categorized into the three generations, the up (u) and down (d) quarks, the charm (c) and strange (s) quarks, top (t) and bottom (b) quarks. All up-type quarks ( u,c,t ) carry charge $Q=+2/3$, all bottom type quarks (d,s,b) carry charge $Q=-1/3$.
+
+There are four fundamental forces in nature: the electromagnetic (EM) force which binds electrons and nuclei together; the weak force which is responsible for the beta decay of neutrons to protons; the strong force which binds quarks together to form protons and neutrons; and finally the gravitational force. Among these forces, the SM provides a theoretical frame work in which three of the four forces, EM, weak and strong interactions emerge naturally from the requirement of local gauge symmetry of the Lagrangian. 
+
+[remove or fix this sentence] At the energy scale where SM is valid, gravitational force is too small compare to the other two, so it is ignored for the study of particle physics at LHC.
+
+Fig.\ref{fig:SM_zoo} shows the fundamental particles, arranged according to the forces that they experience as well as their generation among the three generations of fermions. It also shows their quantum numbers and experimentally measured masses.  
+
+ \begin{figure}[hbt]
+	\begin{center}
+		\includegraphics[width=1.0\linewidth]{general_fig/SM_zoo}
+		\caption{\small The table of all elementary particles discovered to date and their relationships in SM. cite[peskin]}
+		\label{fig:SM_zoo}
+	\end{center}
+\end{figure}
+
+
+Electromagnetic interactions are the most common interactions in our everyday life. All electrically charged particles like leptons, quarks, and W/Z bosons can interact electromagnetically. It is achieved by an exchange force carrier, the photon, which is massless and electric charge neutral. Because the photon is massless, according to QFT, the range of EM force is infinite. Fig.? shows a typical interaction vertex for EM interactions. The strength of the EM interaction is characterized by the fine structure constant $\alpha_{EM}=\frac{e^2}{4\pi}=1/137$
+
+The weak interaction applies to all elementary particles that carry weak charges such as leptons, quarks, and W/Z bosons. It is the underlying mechanism that enables the radiative decay of sub-atomic particles, by inducing flavor changing processes. For example, an up-type quark can become a down-type quark via weak interaction, which is the process behind beta decay. 
+
+The force carriers of the weak interaction are the electric charged $\WW$ bosons of mass 80 GeV and the electric charge neutral $\Z$ boson of mass 91 GeV.  At energy scales much less than the W mass, the large mass of the force carrier suppresses the strength of the weak interaction such that it is about 3 to 4 orders of magnitude smaller than the strength of the EM interaction and hence ``weak''.  At energy scales comparable to masses of the W/Z bosons, which in quantum mechanics is equivalent to very short distances ($10^{-18}$ m), it becomes comparable in strength to the EM interaction.
+
+The weak interaction is the only interaction that mediates flavor changing processes (via the coupling to the charged W bosons). An up-type quark can change to a down-type quark, and an electron can change to a neutrino. The flavor changing coupling can happen both in the same generation and across generations. For example, a $u$ quark can become a $d$ or $s$ quark via coupling to the $\Wp$, although it is more likely to become a $d$ quark. In the SM, the coupling strength between different flavors of quarks is described by Cabibo-Kobayashi-Maskawa (CKM) , which is a 3 by 3 unitary matrix, each element of the matrix shows the coupling strength between up and down-type quarks, as shown below.
+\[
+CKM = 
+\begin{bmatrix}
+	V_{ud} & V_{us} & V_{ub}\\
+	V_{cd} & V_{cs} & V_{cb} \\
+	V_{td} & V_{ts} & V_{tb} 
+\end{bmatrix}
+\]
+
+The current measured magnitudes of CKM elements are given below [ref], and we give only the rough central value for illustrative purposes:
+\[
+|CKM| = 
+\begin{bmatrix}
+	0.97 & 0.22 & 0.003  \\
+	0.22 & 0.97 & 0.04 \\
+	0.008 & 0.04 & 0.9991 
+\end{bmatrix}
+\]
+
+In the CKM matrix, the diagonal elements represent the coupling between quarks in the same generation, while the off-diagonal terms represent the flavor changing couplings between different generations. Notice that the diagonal elements are close to one, and off-diagonal elements are negligible/small between first/second and third generation quarks. This indicate top quark couples almost exclusively to the bottom quark, which is a signature of top quark decay.
+
+Finally, the strong force acts between any particles that are color charged, namely quarks and gluons. It is mediated by massless, spin 1 gauge bosons called gluons. The strong interaction is described by a gauge theory called Quantum Chromodynamics (QCD). In QCD, there are three fields associated with each flavor of quark and we label them with different colors: red, green, blue. The names of the colors are just conventional and have nothing to do with actual colors. The theory of QCD is invariant under local SU(3) gauge transformations on the quark fields. The gauge invariance introduces a $3\times3$ matrix gauge field, corresponds to eight gluons, each one is associated with a color and an anti-color. 
+
+One unique property of QCD is called asymptotic freedom, which states that at sufficiently high energy, the strong interaction is no longer strong, and quarks and gluons behave like free particles, just like leptons or photons. Another related phenomena of QCD is called quark confinement: quarks and gluons cannot exist as isolated, free particles, so called "bare" states. Both asymptotic freedom and quark confinement share the same origin, namely the running coupling constant. Because of QCD is a SU(3) gauge theory, the coupling constant of strong interaction $\alpha_s$, which reflects the strength of strong interaction, increases when the exchanged momentum at interacting vertex decreases.
+
+\section{Decay rates and cross sections}
+
+In scattering experiments where two beams of particles collide with each other, the cross section, denoted by $\sigma$, is a quantity that characterizes the intrinsic underlying interactions of the colliding particles independently of the beam intensities. 
+
+Roughly speaking, the cross section describes the probability of observing a particular process. It has the dimensions of area, and an intuitive interpretation of cross section is that it is the area of the target particle presented to an incoming point-like beam particle in a fixed target scattering experiment. 
+
+The number of events of a process observed during a time period, can be calculated in the following way:
+\begin{equation}
+N_{exp} = \sigma_{exp}\times\int\lumi(t)dt
+\end{equation}
+
+Where $\lumi(t)$ is instantaneous luminosity, which measures the intensity of colliding beams. In the LHC, where both beams include bunches of colliding particles the instantaneous luminosity can be expressed as
+\begin{equation}
+\lumi = f_{coll}\frac{n^2}{4\pi \sigma_x \sigma_y}
+\end{equation}
+where each bunch contains $n$ particles, the RMS horizontal and vertical sizes of the beams are $\sigma_x$ and $\sigma_y$, and each bunch is collided with frequency $f_{coll}$.  It is common to use another quantity, integrated luminosity, $\lumi_{int} = \int \lumi(t)dt$ , which represents the total number of collisions done over time, and is usually measured in the units of $pb^{-1}$ or $fb^{-1}$ where $b$ is an abbreviation for barn which is defined as $10^{-28}m^2$.
+ 
+ It is often interesting to know not just the total number of observed events of a process, which is given by $\lumi_{int}\sigma_{exp}$, but also the distribution of the events in final state variables. To do this, we also introduce another observable, called the differential cross section usually denoted by $d\sigma$. In the special case of a two particle collision with a two particle final state (the $2\rightarrow2$ process), a type of differential cross section of particular interest is the angular one:
+ \begin{equation}
+ \lumi_{int}\frac{\df\sigma}{\df\Omega}=\frac{\df N}{\df \Omega}
+ \end{equation} 
+ where $\df \Omega=\sin\theta\df\theta\df \phi$ is the solid angle of one of the outgoing final state particles. In another words, $\df \sigma/\df \Omega$ is the angular distribution of the final state particle.
+ 
+ There are two types of cross section, the inclusive (total) and exclusive ones. Inclusive means the total cross section regardless of the specific final states (some times are called channels) that are observed. Exclusive ones are the cross section of observing a specific channel. So by definition, $\sigma_{\mathrm{tot}}=\sum_{i}^{n}\sigma_i$.
+ 
+Another observable commonly used in particle physics is the decay rate of an unstable particle, denoted by $\Gamma$, which represents the probability per unit time that the particle will decay into final states of 2 or more daughter particles. Assuming that the initial number of particles is $\mathrm{N}(0)$, the number of remaining particles after time $t$ is:
+ \begin{equation}
+ \mathrm{N}(t) = \mathrm{N}(0)\exp^{-\Gamma t}
+ \end{equation}
+ For a particle that can decay to many different decay modes, the total decay rate is the sum of the rates for all decay modes:
+ \begin{equation}
+ \Gamma_{tot} = \sum_{i=1}^{n}\Gamma_i
+ \end{equation}
+ And the branching ratio of decay mode is defined simply as $\mathrm{Br}_i = \Gamma_i/\Gamma_{tot} $. The branching ratio is another observable that can be measured experimentally.
+
+In scattering experiments, if the initial particles can form an intermediate bound state, then the cross section near the mass of the bound state exhibits an enhancement known as a resonance.  The cross section will have a peak of the form described by Breit-Wigner formula
+ \begin{equation}
+ \sigma \propto \frac{1}{(E-E_0)^2+\Gamma^2/4}
+ \end{equation} 
+where the width of the resonance $\Gamma$ is also the decay rate of the unstable resonance.
+ 
+ \section{Lagrangian Density and Gauge Invariance}
+ In Quantum Field Theory, both the equations of motion and the interactions between particles can be fully described by choosing a Largrangian density function (simply denoted by Lagrangian), $\lumi$. 
+ 
+The Lagrangian is a function of fields ($\phi(x^{\mu})$) and their space time derivatives ($\dmu\phi$). The fields are themselves continuous functions of space and time , $x^{\mu} = (t,x_1,x_2,x_3)$, which explicitly puts space and time on an equal footing as required by special relativity. 
+ 
+ All elementary particles are the quanta of the underlying fields. Depending on the spin of the particle, different types of fields satisfy different equations of motion. Scalar fields are associated with spin-0 particles (Higgs boson in SM), denoted by $\phi$. Spinor fields are associated with spin-1/2 particles (fermions, such as leptons or quarks), denoted by $\psi$. Vector fields are associated with spin-1 particles (all gauge bosons, such as photon or gluons), denoted by $A^\mu$. The forms of Lagrangian in QFT is almost the same as classical field theory, the difference is that in QFT, the fields incorporate creation and annihilation operators.
+ 
+The equations of motion for free fields can be derived by using the principle of least action, which states that the motion of free particles between two space-time points $x_1^{\mu},x_2^{\mu}$ ,must follow the path of least action. Action is defined as the space-time integral:
+ \begin{equation}
+ S=\int\lumi(\phi,\dmu\phi)\df^4x
+ \end{equation} 
+ The path of least action is equivalent to the condition $\delta S=0$ which leads to the Euler-Lagrange equation of motion for the field,
+ \begin{equation}
+ \dmu\left(\frac{\partial\lumi}{\partial(\dmu\phi)}\right)-\frac{\lumi}{\partial\phi}=0
+ \end{equation}
+ 
+QFT is a local theory, which means it only has a localized Lagrangian density, where all interactions among fields happen at the a point in space-time. The interaction terms of matter fields and gauge boson fields in the Standard Model are introduced as a consequence of enforcing non-abelian local gauge invariance, which was first proposed by Yang and Mills in 1950s. 
+ 
+For example, electromagnetic interactions can be introduced by enforcing local U(1) abelian gauge invariance on the Lagrangian density. Starting from the Lagrangian of free fermion field:
+ \begin{equation}
+ \lumi = i\bar\psi \dmu \gamma^\mu \psi-m\bar\psi\psi
+ \end{equation}
+ where $\psi$ is the spinor field, and $\gamma^\mu$ are $4\times4$ matrices. This Lagrangian is invariant only under global U(1) transformation $\psi\rightarrow \exp^{i\theta}\psi$. In order to promote the global U(1) transformation to local ones, where $\psi\rightarrow \exp^{i\theta(x)}\psi$ , the derivative $\dmu$ need to be replaced by a specially designed covariant derivative:
+ \begin{equation}
+ \DMU = \dmu+iqA_\mu
+ \end{equation}
+ such that under the local gauge transformation $\psi\rightarrow\exp^{-iq\lambda(x)}$, the newly introduced vector field $A_\mu$ transforms according to :
+ \begin{equation}
+ A_\mu\rightarrow A_{\mu}+\dmu\lambda
+ \end{equation}
+ Then the following Lagrangian will become invariant under local gauge transformations:
+  \begin{equation}
+ \lumi = i\bar\psi \DMU\gamma^\mu \psi-m\bar\psi\psi
+ \end{equation}
+ Expanding the above Lagrangian: 
+  \begin{equation}
+ \lumi = [i\bar\psi \dmu \gamma^\mu \psi-m\bar\psi\psi] - (q\bar\psi\gamma^\mu\psi)A_\mu
+ \end{equation}
+ We find that the coupling of matter field $\psi$ with the gauge boson field $A_\mu$, the quantization of which is photons, naturally emerge from the term $(q\bar\psi\gamma^\mu\psi)A_\mu$ where q is the electric charge.
+ 
+ The same procedure can be expanded to describe the unified electro-weak interaction, by enforcing $\mathrm{SU}(2)_L\otimes\mathrm{U}(1)$ local gauge invariance. The gauge bosons introduced in the covariant derivatives are $\Wp\Wm$,Z and photon. Eight gluons are introduced by enforcing the invariance of SU(3) color group transformations.  
+ 
+ \section{From Matrix Element to Cross Sections}
+ \label{sec:ME}
+ To relate the dynamics described by Lagrangian to the experimentally observable cross section, we need to first introduce the concept of S-matrix $S$ and its matrix element $M$. 
+ 
+ The S-matrix is a unitary operator that relates the incoming particle states (initial states) and the outgoing final states of a scattering experiment.  We define the initial two particle state as $\ket{\bm k_A\bm k_B}_{in}$, and outgoing many particle final state as $\ket{\bm p_1 \bm p_2}_{out}$, where $\bm k$ and $\bm p$ are 4-momentum of initial and final states. The cross section is proportional to the transition probability from incoming state to outgoing state, which can be calculated according to quantum mechanics as follows:
+ \begin{equation}
+ P=|_{\mathrm{out}}\braket{\bm p_1 \bm p_2 \cdots}{\bm k_A\bm k_B}_{\mathrm{in}}|^2
+ \end{equation}
+ 
+ S matrix is defined as an operator that contains all the information about time evolution and interaction between initial and final states:
+ \begin{equation}
+ _{\mathrm{out}}\braket{\bm p_1 \bm p_2 \cdots}{\bm k_A\bm k_B}_{\mathrm{in}} \equiv \bra{\bm p_1 \bm p_2 \cdots}S\ket{\bm k_A\bm k_B}
+ \end{equation}
+ 
+Since the scattering process can be separated into the overlapping (interacting)  and non-overlapping parts of two particles, it can be written as $S=1+iT$. And matrix element $\ME$ can be defined to contain only the information of interaction, separate from all the kinematics, such as conservation of momentum:
+ \begin{equation}
+ \bra{\bm p_1 \bm p_2 \cdots}iT\ket{\bm k_A\bm k_B}=(2\pi)^4\delta^(4)(\bm k_A+\bm k_B-\sum \pm p_f)\dot i\ME(\pm k_A,\pm k_B\rightarrow \bm p_f)
+ \end{equation}
+The matrix element can be calculated using perturbation theory based on the Lagrangian by using a set of rules called the Feynman calculus. The cross section is related to matrix element. In the simplest case of $2\rightarrow2$ scattering, the differential cross section in center of mass frame can be calculated with the following form:
+ \begin{equation}
+ \left(\frac{\df \sigma}{\df \Omega}\right)_{CM} = \frac{1}{2 E_A 2 E_B |v_A-v_B|}\frac{|\bm p_1|}{(2\pi)^2 4E_{cm}}|\ME(p_A,p_B\rightarrow p_1,p_2)|^2
+ \end{equation}
+ 
+\section{Feynman Calculus and Perturbation Theory}
+As described in previous section, the observed cross section is related to the matrix element $\ME$. It can be calculated perturbatively in terms of the order of the coupling constant, usually denoted by $\alpha$, by following the Feynman rules which are derived from the Lagrangian of the theory.
+ 
+The building blocks of this formalism, the Feynman Calculus, are the Feynman Rules, which describe the propagation of free fields and their interactions at vertices. An example of QED Feynman rules are given below in Fig.\ref{fig:QED_1},\ref{fig:QED_2}
+ 
+ \begin{figure}[hbt]
+ 	\begin{center}
+ 		\includegraphics[width=0.8\linewidth]{feynman_rules/qed_1}
+ 		\caption{\small The Feynman diagram of fermion and photon propagator. cite[peskin]}
+ 		\label{fig:QED_1}
+ 	\end{center}
+ \end{figure}
+
+ \begin{figure}[hbt]
+	\begin{center}
+		\includegraphics[width=0.8\linewidth]{feynman_rules/qed_2}
+		\caption{\small The Feynman diagram of QED vertex, represent the electromagnetic interaction by exchanging a photon. cite[peskin]}
+		\label{fig:QED_2}
+	\end{center}
+\end{figure}
+ 
+It can be shown that the scattering matrix element $i\ME$ can be calculated by summing over all connected Feynman diagrams evaluated according the Feynman rules. In the calculation of each diagram, momentum conservation is imposed at all vertices, and if there is loop in the diagram, the undetermined momentum in the loop must be integrated out. 
+
+The matrix element can be calculated perturbatively , order by order, in terms of the power of interaction coefficient. In QED, the order is represented by the power of fine structure constant defined as $\alpha_{\mathrm{EM}} = e^2/4\pi\approx 1/137$.  The rationale of this approach follows from the small size of  the coupling constant, which implies that the contribution of each higher order in the calculation is significantly smaller than that of the previous order.
+
+We call the leading order (LO) diagrams the ones containing the lowest power of $\alpha_{\mathrm{EM}}$ of all connected diagrams. LO diagrams are also often called tree-level diagrams. One example of an LO diagram and its corresponding matrix element, for the scattering of two fermions is shown below in Fig.[\ref{fig:QED_scattering}]
+	
+ \begin{figure}[hbt]
+	\begin{center}
+		\includegraphics[width=0.8\linewidth]{feynman_rules/coulomb_scattering}
+		\caption{\small The Feynman diagram of LO scattering of two fermions. cite[peskin]}
+		\label{fig:QED_scattering}
+	\end{center}
+\end{figure}	
+	
+In the Feynman diagram shown in Fig.\ref{fig:QED_scattering}, the arrows label the direction of momentum flow for the matter fields (the direction of anti-matter momentum is the reverse of the arrow). The momenta of the initial and final states are labeled as $p,k$ and $p^\prime,k^\prime$. The matrix element corresponds to this diagram can be seen as following from the individual Feynman rules mentioned above.
+
+\section{Higher Order Corrections and Renormalization}
+
+In higher order diagrams containing loops, the undetermined momentum in the intermediate virtual process (loop) must be integrated over all values. These integrals often become infinite as the momentum in the loop goes to infinity. One example of loop diagram of the same process of fermion scattering is shown below in Fig.\ref{fig:QED_loop}, which is called the vacuum polarization correction, where the virtual photon splits into a fermion/anti-fermion pair. It can be shown that this diagram is divergent as $\ln q$ where $q$ is the momentum transfer that is carried by photon. 
+
+ \begin{figure}[hbt]
+	\begin{center}
+		\includegraphics[width=0.6\linewidth]{feynman_rules/QED_Loop}
+		\caption{\small The Feynman diagram of loop correction of femion scattering.}
+		\label{fig:QED_loop}
+	\end{center}
+\end{figure}
+
+In order to make the matrix element from this diagram finite, a special procedure called Renormalization is applied. This procedure involves a redefinition of the coupling constant to absorb the divergent terms, and the new coupling constant that actually depends on the momentum transfer $q$. This is called running coupling constant, and is given in Eq.\ref{eq:running-alpha} for the case of vacuum polarization correction below:
+
+\begin{equation}
+\alpha(q^2) = \alpha(0) \left[ 1+\frac{\alpha(0)}{3\pi} f( \frac{-q^2}{m^2} ) \right]
+\label{eq:running-alpha}
+\end{equation}
+
+where $f(x)~\ln x$, and $q^2<0$ for the momentum being exchanged. The coupling constant increases at larger momentum scales, which is equivalent to smaller distances of the interaction. In another words, the effective charge of the observed particle changes with the distance being probed. 
+
+The higher order corrections to the LO calculation together with renormalization procedure, introduce a momentum scale called renormalization scale $\mu_R$.  Calculations including higher-order contributions to the matrix element are usually functions of this scale through their dependence on renormalized quantities, such as coupling constants. In practice the renormalization scale is usually chosen as the typical momentum transfer of the process, $Q$, or the invariant mass of the produced final state particles.
+
+In contrast to QED, the running coupling constant of QCD, $\alpha_s{\mu_R}$ decreases as exchanged momentum increases. So in sufficiently high energy regimes, perturbation calculations can provide accurate predictions of scattering processes involving the strong interaction, while at lower energy scales non-perturbative effects are quite important. Because the strong interaction becomes strong at the scales of hadron masses, no bare quark and gluons can be observed directly; they are observed experimentally as highly collimated group of hadrons, called "jets".
+
+This completes our brief review of the Standard Model.  The next chapter focuses on the specific phenomenology of top quark physics, which is the main topic of this thesis.
+
+
+ 

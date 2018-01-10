@@ -1,0 +1,365 @@
+\chapter{Appendix} 
+
+\section{Removing Top $p_{T}$ Reweighting}
+\label{sec:top pt removal}
+
+As discussed above in Section~\ref{sec:corrections}, the semileptonic and dileptonic $t\bar{t}$ samples have been reweighted to conform more closely to the exected NNLO cross section, which seems to model the distribution of individual low $p_{T}$ top-quarks in data more accurately. As a consistency check, fits to the data were also performed with this $p_{T}$ dependent event scale factor removed. Numerical results are listed below in Table~\ref{appendix:top-pt}, and a visual comparison of these fits to data are pictured in Fig.~\ref{appendix: top pt postfit}.
+
+\begin{table}[htb]
+\centering
+\begin{tabular}{c|cc|cccc}
+Template version & $A_{FB}$ &   $R_{q\bar{q}}$ & $R_{other\_bkg\_\mu}$ & $R_{other\_bkg\_el}$ & $R_{WJets\_\mu}$ & $R_{WJets\_el}$ \\
+\hline
+Apply top $p_T$         &  0.047 &   0.12 &          0.089 &          0.101 &      0.007 &      0.011 \\
+Not apply   top $p_T$   &  0.038 &  0.108 &          0.073 &          0.083 &      0.006 &       0.01 \\
+\hline
+\end{tabular}
+\caption{Central value of all fit parameters with each type of systematic nuisance parameters turn on at a time.}
+\label{appendix:top-pt}
+\end{table}
+
+
+\begin{figure}[hbt]
+  \begin{center}
+    \includegraphics[width=0.49\linewidth]{appendix/no_toppt/lep_combo_x}
+    \includegraphics[width=0.49\linewidth]{appendix/no_toppt/lep_combo_y}
+    \includegraphics[width=0.49\linewidth]{appendix/no_toppt/lep_combo_z}
+  \caption{\small Postfit plots of lepton and charge combined template after the fit (colored) and data (solid dots with error bar). Note top $p_T$ reweighting is not applied on $t\bar{t}$ MC samples. All errors, including the shaded band in the Data/MC comparison plots, indicate Poisson error only.}
+    \label{appendix: top pt postfit}
+  \end{center}
+\end{figure}
+
+
+
+Including the top $p_{T}$ reweighting significantly reduces the disparity between simulation and data at high $|cos(\theta)|$. However, it also causes greater disagreement in the $M_{t\bar{t}}$ spectrum, particularly by overestimating the portion of the data at low pair mass. Numerically, the fitted value of the background fraction is decreased when including the reweighting. The fitted value of $R_{q\bar q}$ is increased when including the reweighting. There is only small effect on the fitted value of $A^{(1)}_{FB}$, possibly correlated with the effect on $R_{q\bar q}$.
+
+\clearpage
+\section{Study the effect of gluon longitudinal polarization}
+In the earlier stage of the analysis, we made the asymmetric template $F_{qa}$ by using the gluon longitudinal polarization ($\alpha$) that is determined from a un-binned likelihood fit to the simulated $q\bar{q}\rightarrow t\bar{t}$ events generated using Powheg generator. The center of mass energy for the simulated events were chosen to be 8 TeV. We fit a $\alpha$ that is not a function of $\beta$ which depends on $t\bar{t}$ invariant mass.
+
+This is different from the $\alpha$ we use in the current version of results, which is determined from a binned likelihood fit to $c*$ distribution of simulated $q\bar{q}\rightarrow t\bar{t}$ process generated using aMC@NLO generator, and the proton-proton center of mass energy to be 13 TeV. In addition, we now fit the $\alpha$ as a $\beta$ dependent parameter, by fitting $c*$ distribution of different $\beta$ values.
+
+Here we list the measurement of $A_{FB}$ and other parameters using the old version of templates, generated with $\alpha=-0.13$, for the purpose of study how sensitive the fit result depends on $\alpha$.
+
+The systematic uncertainties are listed in Table.[\ref{tab:sys-full-old-alpha}]. The postfit comparison plots are show in Fig.[\ref{fig:postfit combined old alpha}] .  The fit results are:
+\begin{itemize}
+\item $ A_{FB} = 0.047  \pm 0.050 \, (stat) \pm 0.016 \, (sys)$
+\item $ R_{q\bar{q}} = 0.120  \pm 0.006 \, (stat) \pm 0.014 \, (sys) $
+\end{itemize}
+
+It can be seen that the difference of central values from the results of new versions of $\alpha$ is much smaller than the uncertainties. The conclusion is our fitting is ultimately not sensitive to the value of $\alpha$.
+
+\begin{table}[htb]
+\centering
+\begin{tabular}{c|cc|cccc}
+Systematics &      $A_{FB}$ &   $R_{q\bar{q}}$ & $R_{other\_bkg\_\mu}$ & $R_{other\_bkg\_el}$ & $R_{WJets\_\mu}$ & $R_{WJets\_el}$ \\
+\hline
+Nominal         &  0.047 &   0.12 &          0.089 &          0.101 &      0.007 &      0.011 \\
+\hline
+B-Tagging Eff.  &  0.046 &  0.119 &          0.089 &          0.101 &      0.007 &      0.011 \\
+Lepton ID Eff.  &  0.047 &   0.12 &          0.088 &          0.101 &      0.007 &      0.011 \\
+Lepton Iso Eff. &  0.047 &   0.12 &          0.089 &          0.101 &      0.007 &      0.011 \\
+Tracking Eff.   &  0.047 &   0.12 &          0.089 &          0.101 &      0.007 &      0.011 \\
+Trigger Eff.    &  0.047 &   0.12 &          0.089 &          0.101 &      0.007 &      0.011 \\
+\hline
+JES             &   0.05 &  0.114 &          0.106 &           0.12 &      0.011 &      0.014 \\
+JER             &  0.041 &  0.118 &          0.095 &          0.104 &      0.008 &      0.011 \\
+PDF             &  0.038 &   0.12 &          0.095 &          0.104 &      0.008 &      0.011 \\
+\hline
+top $p\_T$         &  0.038 &  0.108 &          0.073 &          0.083 &      0.006 &       0.01 \\
+\hline
+\end{tabular}
+\caption{Central value of all fit parameters with each type of systematic nuisance parameters turn on at a time. Fit with templates generated using $\alpha=-0.13$}
+\label{tab:sys-full-old-alpha}
+\end{table}
+
+\begin{table}[htb]
+\centering
+\begin{tabular}{c|cc|cccc}
+Systematics &    $\sigma_{AFB}^{sys}$ & $\sigma_{R_{q\bar{q}}}^{sys}$ & $\sigma_{R_{other\_bkg\_\mu}}^{sys}$ & $\sigma_{R_{other\_bkg\_el}}^{sys}$ & $\sigma_{R_{WJets\_\mu}}^{sys}$ & $\sigma_{R_{WJets\_el}}^{sys}$  \\
+\hline
+B-Tagging Eff.  &   0.001 &    0.001 &                  0 &                  0 &              0 &              0 \\
+Lepton ID Eff.  &       0 &        0 &              0.001 &                  0 &              0 &              0 \\
+Lepton Iso Eff. &       0 &        0 &                  0 &                  0 &              0 &              0 \\
+Tracking Eff.   &       0 &        0 &                  0 &                  0 &              0 &              0 \\
+Trigger Eff.    &       0 &        0 &                  0 &                  0 &              0 &              0 \\
+JES             &   0.003 &    0.006 &              0.017 &              0.019 &          0.004 &          0.003 \\
+JER             &   0.006 &    0.002 &              0.006 &              0.003 &          0.001 &              0 \\
+PDF             &   0.009 &        0 &              0.006 &              0.003 &          0.001 &              0 \\
+top $p\_T$         &   0.009 &    0.012 &              0.016 &              0.018 &          0.001 &          0.001 \\
+\hline
+Total           &  0.0144 &   0.0136 &             0.0249 &             0.0265 &        0.00436 &        0.00316 \\
+\hline
+\end{tabular}
+\caption{Systematic uncertainties of fit parameters from different sources. The total is the individual sources add in quadrature. Fit with templates generated using $\alpha=-0.13$ }
+\label{tab:sys-err-old-alpha}
+\end{table}
+
+
+\begin{figure}[hbt]
+  \begin{center}
+    \includegraphics[width=0.49\linewidth]{appendix/lep_combo_x}
+    \includegraphics[width=0.49\linewidth]{appendix/lep_combo_y}
+    \includegraphics[width=0.49\linewidth]{appendix/lep_combo_z}
+  \caption{\small Postfit plots of lepton and charge combined template after the fit (colored) and data (solid dots with error bar). All errors, including the shaded band in the Data/MC comparison plots, indicate Poisson error only. Fit with templates generated using $\alpha=-0.13$}
+    \label{fig:postfit combined old alpha}
+  \end{center}
+\end{figure}
+
+\clearpage
+\section{Lepton separate fit}
+\label{lep seperate fit}
+
+We also performed the $e+jets$ and $\mu+jets$ channel separately as a cross check. The results are shown in Table.[\ref{tab:result_mu}] and Table.[\ref{tab:result_el}]. If compare with lepton combined fit result, it can be seen that the combine fit result roughly lies in between the results of $e+jets$ and $\mu+jets$. 
+
+\begin{table}[hbt]
+\begin{center}
+\begin{tabular}{c|cc}\hline
+Parameter                   & Fit   \\
+\hline
+$A_{FB}$					   &  0.146 $\pm$ 0.077(stat)  \\
+$R_{q\bar{q}}$			  &  0.102 $\pm$ 0.008(stat)  \\
+\end{tabular}
+\end{center}
+\label{tab:result_mu}
+\caption{Result of template fit to single muon data using 2012 8 TeV Data collected by CMS.  The expected value of parameters are from template fit to MC simulations. }
+\end{table}
+
+\begin{table}[hbt]
+\begin{center}
+\begin{tabular}{c|cc}\hline
+Parameter                   & Fit   \\
+\hline
+$A_{FB}$						& -0.091  $\pm$ 0.076 (stat) \\
+$R_{q\bar{q}}$ & 0.137 $\pm$ 0.008   \\
+\end{tabular}
+\end{center}
+\label{tab:result_el}
+\caption{Result of template fit to single electron data using 2012 8 TeV Data collected by CMS. The expected value of parameters are from template fit to MC simulations. }
+\end{table}
+
+\begin{figure}[hbt]
+  \begin{center}
+    \includegraphics[width=0.49\linewidth]{mu/comb_x}
+    \includegraphics[width=0.49\linewidth]{mu/comb_y}
+    \includegraphics[width=0.49\linewidth]{mu/comb_z}
+  \caption{\small Postfit plots for $\mu$+jets channel.}
+    \label{fig:mu_postfit}
+  \end{center}
+\end{figure}
+
+\begin{figure}[hbt]
+  \begin{center}
+    \includegraphics[width=0.49\linewidth]{el/comb_x}
+    \includegraphics[width=0.49\linewidth]{el/comb_y}
+    \includegraphics[width=0.49\linewidth]{el/comb_z}
+  \caption{\small Postfit plots for e+jets channel.}
+    \label{fig:el_postfit}
+  \end{center}
+\end{figure}
+
+
+
+\clearpage
+\section{Generalization of Analysis Scheme}
+A more sophisticated model can be proposed to empirically describe the distribution of our signal process, though in current form we use the simplified model which is by setting $\xi,\delta$ to zero.
+
+\begin{align}
+\frac{d\sigma}{dc_*}(q\bar q;M^2) = R\frac{\pi\alpha_s^2}{9M^2}\beta\biggl\lbrace&1+\beta^2c_*^2+\left(1+\xi\right)\left(1-\beta^2\right)+\left(\alpha+\delta\right)\left(1-\beta^2c_*^2\right) \nonumber \\
+&+2\left[1+\frac{1}{3}\beta^2+(1+\xi)(1-\beta^2)+\left(\alpha+\delta\right)\left(1-\frac{1}{3}\beta^2\right)\right]A_\mathrm{FB}^{(1)}c_*\biggr\rbrace
+\label{eq:qq_general}
+\end{align}
+
+This general form of distribution can be used to generate templates for a 5-parameter fit that allows the fitting of a non-zero $\xi,\delta$.  This requires that the function be decomposed into six parts that are linear in the fit parameters or products of fit parameters.  The same template functions $f_\mathrm{qs}(x_\mathrm{r}, M_\mathrm{r}, c_\mathrm{r},Q)$ and $f_\mathrm{qa}(x_\mathrm{r}, M_\mathrm{r}, c_\mathrm{r},Q)$ are used in combination with new templates $f_{\mathrm{qs}\xi}(x_\mathrm{r}, M_\mathrm{r}, c_\mathrm{r},Q)$, $f_{\mathrm{qa}\xi}(x_\mathrm{r}, M_\mathrm{r}, c_\mathrm{r},Q)$, $f_{\mathrm{qs}\delta}(x_\mathrm{r}, M_\mathrm{r}, c_\mathrm{r},Q)$, and $f_{\mathrm{qa}\delta}(x_\mathrm{r}, M_\mathrm{r}, c_\mathrm{r},Q)$ generated from samples with the weights,
+\begin{align}
+w_{\mathrm{s}\xi}(M^2, c_*) &= \frac{1-\beta^2}{1+\beta^2c_*^2+\left(1-\beta^2\right)+\alpha\left(1-\beta^2c_*^2\right)} \\
+w_{\mathrm{a}\xi}(M^2, c_*) &= 2\frac{1-\beta^2}{1+\beta^2c_*^2+\left(1-\beta^2\right)+\alpha\left(1-\beta^2c_*^2\right)}c_*\\
+w_{\mathrm{s}\delta}(M^2, c_*) &= \frac{1-\beta^2c_*^2}{1+\beta^2c_*^2+\left(1-\beta^2\right)+\alpha\left(1-\beta^2c_*^2\right)} \\
+w_{\mathrm{a}\delta}(M^2, c_*) &= 2\frac{1-\frac{1}{3}\beta^2}{1+\beta^2c_*^2+\left(1-\beta^2\right)+\alpha\left(1-\beta^2c_*^2\right)}c_*.
+\end{align}
+The 5-parameter likelihood fit would then look like the following,
+\begin{align}
+f(x_\mathrm{r},&M_\mathrm{r},c_\mathrm{r},Q) =  \sum_jR^j_\mathrm{bk}f^j_\mathrm{bk}(x_\mathrm{r},M_\mathrm{r},c_\mathrm{r})+\biggl(1-\sum_jR^j_\mathrm{bk}\biggr )\biggl[ \left(1-R_{q\bar q}\right) f_{gg}(x_\mathrm{r},M_\mathrm{r},c_\mathrm{r},Q)\nonumber \\  \nonumber
+&+\frac{R_{q\bar q}}{1+\xi F_{\xi}+\delta F_{\delta}}\Bigl\lbrace f_\mathrm{qs}(x_\mathrm{r}, M_\mathrm{r}, c_\mathrm{r},Q)+\xi f_{\mathrm{qs}\xi}(x_\mathrm{r}, M_\mathrm{r}, c_\mathrm{r},Q)+\delta f_{\mathrm{qs}\delta}(x_\mathrm{r}, M_\mathrm{r}, c_\mathrm{r},Q) \\
+&+A_\mathrm{FB}^{(1)}\bigl[f_\mathrm{qa}(x_\mathrm{r}, M_\mathrm{r}, c_\mathrm{r},Q)+\xi f_{\mathrm{qa}\xi}(x_\mathrm{r}, M_\mathrm{r}, c_\mathrm{r},Q)+\delta f_{\mathrm{qa}\delta}(x_\mathrm{r}, M_\mathrm{r}, c_\mathrm{r},Q)\bigr]\Bigr\rbrace\biggr]   \label{eq:sixparone}
+\end{align}
+where the symmetric distribution functions are normalized as follows,
+\begin{align}
+ & \sum_{Q}\int dx_\mathrm{r} dM_\mathrm{r} dc_\mathrm{r} f_{\mathrm{bk}}(x_\mathrm{r}, M_\mathrm{r}, c_\mathrm{r},Q) = 1\\
+ & \sum_{Q}\int dx_\mathrm{r} dM_\mathrm{r} dc_\mathrm{r} f_{gg}(x_\mathrm{r}, M_\mathrm{r}, c_\mathrm{r},Q) = 1\\
+  & \sum_{Q}\int dx_\mathrm{r} dM_\mathrm{r} dc_\mathrm{r} f_{\mathrm{qs}}(x_\mathrm{r}, M_\mathrm{r}, c_\mathrm{r},Q) = 1
+ \end{align}
+
+and where $F_\xi$ and $F_\delta$ are the integrals of the reweighted symmetric functions $f_{\mathrm{qs}\xi}$ and $f_{\mathrm{qs}\delta}$,
+\begin{align}
+ F_{\xi}=& \sum_{Q}\int dx_\mathrm{r} dM_\mathrm{r} dc_\mathrm{r} f_{\mathrm{qs}\xi}(x_\mathrm{r}, M_\mathrm{r}, c_\mathrm{r},Q) \\
+  F_{\delta}=& \sum_{Q}\int dx_\mathrm{r} dM_\mathrm{r} dc_\mathrm{r} f_{\mathrm{qs}\delta}(x_\mathrm{r}, M_\mathrm{r}, c_\mathrm{r},Q).
+ \end{align}
+
+It is expected that spin correlations cause the acceptances for $q\bar q$-produced and $gg$-produced events to differ.  The $gg$-produced events are expected to have a negative spin-correlation: the number of $t_L\bar t_L+t_R\bar t_R$ events is expected to be larger than the number of $t_L\bar t_R+t_R\bar t_L$ events where the labels refer to helicity and not chirality.  The $q\bar q$-produced events have a positive spin-correlation with more of the latter and fewer of the former.  Since the acceptance of the detector differs for left-handed top (right-handed antitop) and right-handed (left-handed antitop) decays, the acceptances for the two subsamples must differ.  These differences are included in the simulated samples and the re-weighting of the $q\bar q$ sample to create a generalized distribution function implicitly assumes that the $q\bar q$ QCD spin correlation is not affected by the presence of any new physics.
+
+
+\clearpage
+
+\section{Templates}
+\label{sec:all templates}
+In this section we included all major templates that has been fed into Theta for template fit. We organize the plots in terms of the corresponding parameter the templates are for. Note that for the parameters that only affect the event rate , such as $R_{q\bar q}$, only $c*$ projection plots are shown to reduce redundancy.
+ 
+\subsection{$A_{FB}$ templates}
+$A_{FB}$ only affect the $q\bar q \rightarrow t \bar t$ distributions, for both $e+jets$ and $\mu+jets$ channel. The plots are shown in Fig.[\ref{appendix:afb_temps}]
+\begin{figure}[hbt]
+  \begin{center}
+    \includegraphics[width=0.49\linewidth]{appendix/templates/el_f_combo__qq__AFB__cstar_sys}
+    \includegraphics[width=0.49\linewidth]{appendix/templates/mu_f_combo__qq__AFB__cstar_sys}
+    \includegraphics[width=0.49\linewidth]{appendix/templates/el_f_combo__qq__AFB__mtt_sys}
+    \includegraphics[width=0.49\linewidth]{appendix/templates/mu_f_combo__qq__AFB__mtt_sys}
+    \includegraphics[width=0.49\linewidth]{appendix/templates/el_f_combo__qq__AFB__xf_sys}
+    \includegraphics[width=0.49\linewidth]{appendix/templates/mu_f_combo__qq__AFB__xf_sys}
+  \caption{\small Template projections for $q\bar q \rightarrow t\bar t$ templates, with up/down/nominal values of $A_{FB}$, for $e+jets$ (left) and $\mu+jets$ (right) channels. }
+  \label{appendix:afb_temps}
+  \end{center}
+\end{figure}
+ 
+\subsection{$R_{q\bar q}$ templates}
+$R_{q\bar q}$ affect both $q\bar q$ ang $gg/qg$ initiated $t\bar t$ templates. It affect the event rate only, not the shape of the templates. The up/down versions of the templates represent the event rate of $q\bar q$ process be 0.2 and 1.8 times the nominal value. The $c*$ projections are in Fig.[\ref{appendix:Rqq_temps}]
+
+\begin{figure}[hbt]
+  \begin{center}
+    \includegraphics[width=0.49\linewidth]{appendix/templates/el_f_combo__qq__R_qq__cstar_sys}
+    \includegraphics[width=0.49\linewidth]{appendix/templates/mu_f_combo__qq__R_qq__cstar_sys}
+    \includegraphics[width=0.49\linewidth]{appendix/templates/el_f_combo__gg__R_qq__cstar_sys}
+    \includegraphics[width=0.49\linewidth]{appendix/templates/mu_f_combo__gg__R_qq__cstar_sys}
+  \caption{\small $c*$ projections for $q\bar q \rightarrow t\bar t$ (top) and $gg/qg \rightarrow t\bar t$ templates, with up/down/nominal values of $R_{q\bar q}$, for $e+jets$ (left) and $\mu+jets$ (right) channels. }
+  \label{appendix:Rqq_temps}
+  \end{center}
+\end{figure}
+ 
+\subsection{ $R_{other\_bkg\_e}$ and $R_{other\_bkg\_\mu}$ templates }
+According to our statistical model Eq.[\ref{eq:template_schemeone}] and Eq.[\ref{eq:SF_bkg}], $R_{other\_bkg\_el}$ only affect $other\_bkg$, $q\bar q$ and $gg$ templates in $e+jets$ channel. It will not affect any templates in $\mu+jets$ channel. Similarly, $R_{other\_bkg\_\mu}$ only affect the corresponding templates in $\mu+jets$ channel. We include the templates for $R_{other\_bkg\_el}$ in Fig.[\ref{appendix:R_other_bkg temp e+jets}] and $R_{other\_bkg\_\mu}$ in Fig.[\ref{appendix:R_other_bkg temp mu+jets}]
+
+\begin{figure}[hbt]
+  \begin{center}
+    \includegraphics[width=0.49\linewidth]{appendix/templates/el_f_combo__other_bkg__R_other_bkg_el__cstar_sys}
+    \includegraphics[width=0.49\linewidth]{appendix/templates/el_f_combo__qq__R_other_bkg_el__cstar_sys}
+    \includegraphics[width=0.49\linewidth]{appendix/templates/el_f_combo__gg__R_other_bkg_el__cstar_sys}
+  \caption{\small $c*$ projections for $other\_bkg$,  $q\bar q \rightarrow t\bar t$ (top) and $gg/qg \rightarrow t\bar t$ templates for $e+jets$ channel, with up/down/nominal values of $R_{other\_bkg\_e}$.}
+  \label{appendix:R_other_bkg temp e+jets}
+  \end{center}
+\end{figure}
+
+\begin{figure}[hbt]
+  \begin{center}
+    \includegraphics[width=0.49\linewidth]{appendix/templates/mu_f_combo__other_bkg__R_other_bkg_mu__cstar_sys}
+    \includegraphics[width=0.49\linewidth]{appendix/templates/mu_f_combo__qq__R_other_bkg_mu__cstar_sys}
+    \includegraphics[width=0.49\linewidth]{appendix/templates/mu_f_combo__gg__R_other_bkg_mu__cstar_sys}
+  \caption{\small $c*$ projections for $other\_bkg$,  $q\bar q \rightarrow t\bar t$ (top) and $gg/qg \rightarrow t\bar t$ templates for $\mu+jets$ channel, with up/down/nominal values of $R_{other\_bkg\_\mu}$.}
+  \label{appendix:R_other_bkg temp mu+jets}
+  \end{center}
+\end{figure}
+
+\subsection{$R_{WJets\_e}$ and $R_{WJets\_\mu}$ templates}
+This parameter is similar to $R_{other\_bkg\_e}$, which has un-correlated effect on $e+jets$ and $\mu+jets channels$. The $c*$ projections for both channels are shown in Fig.[\ref{appendix:R_WJets temp e+jets}] and Fig.[\ref{appendix:R_WJets temp mu+jets}] 
+
+\begin{figure}[hbt]
+  \begin{center}
+    \includegraphics[width=0.49\linewidth]{appendix/templates/el_f_combo__WJets__R_WJets_el__cstar_sys}
+    \includegraphics[width=0.49\linewidth]{appendix/templates/el_f_combo__qq__R_WJets_el__cstar_sys}
+    \includegraphics[width=0.49\linewidth]{appendix/templates/el_f_combo__gg__R_WJets_el__cstar_sys}
+  \caption{\small $c*$ projections for $W+Jets$,  $q\bar q \rightarrow t\bar t$ (top) and $gg/qg \rightarrow t\bar t$ templates for $e+jets$ channel, with up/down/nominal values of $R_{WJets\_e}$.}
+  \label{appendix:R_WJets temp e+jets}
+  \end{center}
+\end{figure}
+
+\begin{figure}[hbt]
+  \begin{center}
+    \includegraphics[width=0.49\linewidth]{appendix/templates/mu_f_combo__WJets__R_WJets_mu__cstar_sys}
+    \includegraphics[width=0.49\linewidth]{appendix/templates/mu_f_combo__qq__R_WJets_mu__cstar_sys}
+    \includegraphics[width=0.49\linewidth]{appendix/templates/mu_f_combo__gg__R_WJets_mu__cstar_sys}
+  \caption{\small $c*$ projections for $W+Jets$,  $q\bar q \rightarrow t\bar t$ (top) and $gg/qg \rightarrow t\bar t$ templates for $\mu+jets$ channel, with up/down/nominal values of $R_{WJets\_\mu}$.}
+  \label{appendix:R_WJets temp mu+jets}
+  \end{center}
+\end{figure}
+
+\subsection{Jet Energy Resolution/ Jet Energy Scale Templates}
+Jet energy resolution and jet energy scale nuisance parameter will affect the distribution of all processes. For simplicity, we only show the $q\bar q$ and $gg/qg$ templates for different variations of JEC/JER parameters, corresponding to 1 $\sigma$ of variations.
+
+\begin{figure}[hbt]
+  \begin{center}
+    \includegraphics[width=0.49\linewidth]{appendix/templates/el_f_combo__qq__JER__cstar_sys}
+    \includegraphics[width=0.49\linewidth]{appendix/templates/mu_f_combo__qq__JER__cstar_sys}    
+    \includegraphics[width=0.49\linewidth]{appendix/templates/el_f_combo__qq__JER__mtt_sys}
+    \includegraphics[width=0.49\linewidth]{appendix/templates/mu_f_combo__qq__JER__mtt_sys}
+    \includegraphics[width=0.49\linewidth]{appendix/templates/el_f_combo__qq__JER__xf_sys}
+    \includegraphics[width=0.49\linewidth]{appendix/templates/mu_f_combo__qq__JER__xf_sys}
+  \caption{\small Projections for $q\bar q \rightarrow t\bar t$ templates for $e+jets$ channel (left) and $\mu+jets$ channel, with up/down/nominal variations of jet energy resolution corrections.}
+  \label{appendix:JER qq temp}
+  \end{center}
+\end{figure}
+
+\begin{figure}[hbt]
+  \begin{center}
+    \includegraphics[width=0.49\linewidth]{appendix/templates/el_f_combo__gg__JER__cstar_sys}
+    \includegraphics[width=0.49\linewidth]{appendix/templates/mu_f_combo__gg__JER__cstar_sys}    
+    \includegraphics[width=0.49\linewidth]{appendix/templates/el_f_combo__gg__JER__mtt_sys}
+    \includegraphics[width=0.49\linewidth]{appendix/templates/mu_f_combo__gg__JER__mtt_sys}
+    \includegraphics[width=0.49\linewidth]{appendix/templates/el_f_combo__gg__JER__xf_sys}
+    \includegraphics[width=0.49\linewidth]{appendix/templates/mu_f_combo__gg__JER__xf_sys}
+  \caption{\small Projections for $gg/qg \rightarrow t\bar t$ templates for $e+jets$ channel (left) and $\mu+jets$ channel, with up/down/nominal variations of jet energy resolution corrections.}
+  \label{appendix:JER gg temp}
+  \end{center}
+\end{figure}
+
+\begin{figure}[hbt]
+  \begin{center}
+    \includegraphics[width=0.49\linewidth]{appendix/templates/el_f_combo__qq__JES__cstar_sys}
+    \includegraphics[width=0.49\linewidth]{appendix/templates/mu_f_combo__qq__JES__cstar_sys}    
+    \includegraphics[width=0.49\linewidth]{appendix/templates/el_f_combo__qq__JES__mtt_sys}
+    \includegraphics[width=0.49\linewidth]{appendix/templates/mu_f_combo__qq__JES__mtt_sys}
+    \includegraphics[width=0.49\linewidth]{appendix/templates/el_f_combo__qq__JES__xf_sys}
+    \includegraphics[width=0.49\linewidth]{appendix/templates/mu_f_combo__qq__JES__xf_sys}
+  \caption{\small Projections for $q\bar q \rightarrow t\bar t$  templates for $e+jets$ channel (left) and $\mu+jets$ channel, with up/down/nominal variations of jet energy scale corrections.}
+  \label{appendix:JES qq temp}
+  \end{center}
+\end{figure}
+
+\begin{figure}[hbt]
+  \begin{center}
+    \includegraphics[width=0.49\linewidth]{appendix/templates/el_f_combo__gg__JES__cstar_sys}
+    \includegraphics[width=0.49\linewidth]{appendix/templates/mu_f_combo__gg__JES__cstar_sys}    
+    \includegraphics[width=0.49\linewidth]{appendix/templates/el_f_combo__gg__JES__mtt_sys}
+    \includegraphics[width=0.49\linewidth]{appendix/templates/mu_f_combo__gg__JES__mtt_sys}
+    \includegraphics[width=0.49\linewidth]{appendix/templates/el_f_combo__gg__JES__xf_sys}
+    \includegraphics[width=0.49\linewidth]{appendix/templates/mu_f_combo__gg__JES__xf_sys}
+  \caption{\small Projections for $gg/qg \rightarrow t\bar t$ templates for $e+jets$ channel (left) and $\mu+jets$ channel, with up/down/nominal variations of jet energy scale corrections.}
+  \label{appendix:JES gg temp}
+  \end{center}
+\end{figure}
+
+\subsection{Parton Distribution Function Templates}
+PDF  nuisance parameter will affect the distribution of all processes. For simplicity, we only show the $q\bar q$ and $gg/qg$ templates for different variations of PDF, corresponding to 1 $\sigma$ of variations.
+ 	
+\begin{figure}[hbt]
+  \begin{center}
+    \includegraphics[width=0.49\linewidth]{appendix/templates/el_f_combo__qq__Pdf_weights__cstar_sys}
+    \includegraphics[width=0.49\linewidth]{appendix/templates/mu_f_combo__qq__Pdf_weights__cstar_sys}    
+    \includegraphics[width=0.49\linewidth]{appendix/templates/el_f_combo__qq__Pdf_weights__mtt_sys}
+    \includegraphics[width=0.49\linewidth]{appendix/templates/mu_f_combo__qq__Pdf_weights__mtt_sys}
+    \includegraphics[width=0.49\linewidth]{appendix/templates/el_f_combo__qq__Pdf_weights__xf_sys}
+    \includegraphics[width=0.49\linewidth]{appendix/templates/mu_f_combo__qq__Pdf_weights__xf_sys}
+  \caption{\small Projections for $q\bar q \rightarrow t\bar t$ templates for $e+jets$ channel (left) and $\mu+jets$ channel, with up/down/nominal variations of PDF.}
+  \label{appendix:PDF temp qq}
+  \end{center}
+\end{figure}
+
+\begin{figure}[hbt]
+  \begin{center}
+    \includegraphics[width=0.49\linewidth]{appendix/templates/el_f_combo__gg__Pdf_weights__cstar_sys}
+    \includegraphics[width=0.49\linewidth]{appendix/templates/mu_f_combo__gg__Pdf_weights__cstar_sys}    
+    \includegraphics[width=0.49\linewidth]{appendix/templates/el_f_combo__gg__Pdf_weights__mtt_sys}
+    \includegraphics[width=0.49\linewidth]{appendix/templates/mu_f_combo__gg__Pdf_weights__mtt_sys}
+    \includegraphics[width=0.49\linewidth]{appendix/templates/el_f_combo__gg__Pdf_weights__xf_sys}
+    \includegraphics[width=0.49\linewidth]{appendix/templates/mu_f_combo__gg__Pdf_weights__xf_sys}
+  \caption{\small Projections for $q\bar q \rightarrow t\bar t$ templates for $e+jets$ channel (left) and $\mu+jets$ channel, with up/down/nominal variations of PDF.}
+  \label{appendix:PDF temp gg}
+  \end{center}
+\end{figure}

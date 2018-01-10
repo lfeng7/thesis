@@ -1,0 +1,236 @@
+\section{Template Fitter}
+\label{chapter:fitter}
+\chaptermark{Template Fitter}
+
+The main goal for this analysis is to simultaneously measure Forward-backward asymmetry ($A_{FB}$) and fraction of $q\bar{q}$ initiated $t\bar{t}$ events, $R_{q\bar{q}}$. We perform the parameter estimation by doing binned maximal likelihood fit using the 3 dimensional templates as described in Eq.[\ref{eq:template_schemeone}].  
+
+\subsection{Overview of Fitting Procedure}
+Here we give a general overview of the theoretical set up of fitter that we use.
+
+\subsection{THETA Package}
+\label{sec:theta_methods}
+We use THETA Package for template fit.[cite] The main idea is assume data event rates follow Poisson distribution for every bin in the phase space spanned by $cos_\theta*,M_{t\bar{t}}$ and $|x_F|$. The statistical model is then a product of independent Poisson distributions:
+\begin{equation}
+p(\bm{n}^{Data}|\bm\theta)=\prod_i Poisson(n_i^{Data}|\lambda_i(\bm\theta))
+\label{eq:theta_likelihood}
+\end{equation}
+where $\bm{n}^{Data}=(n_1,n_2,...,n_i)$ represent the number of events in each bin. $\lambda_i$ is the expected number of events in bin i, which is given by the sum of signal and background events in that bin:
+\begin{align}
+\lambda_i(\bm\theta) = n(x_\mathrm{r},M_\mathrm{r},c_\mathrm{r}|\bm\theta) = \sum_j n^j_\mathrm{bk}(x_\mathrm{r},M_\mathrm{r},c_\mathrm{r}|\bm\theta)+n_{gg}(x_\mathrm{r},M_\mathrm{r},c_\mathrm{r}|\bm\theta) +n_\mathrm{q\bar{q}}(x_\mathrm{r}, M_\mathrm{r}, c_\mathrm{r}|\bm\theta)
+\label{eq:theta_exp_evts}
+\end{align}
+Here $\bm\theta$ represents all parameters, including the parameters of interest and nuisance parameters. There are two types of nuisance parameters in the fit. First type is the one that controls relative compositions of individual background processes, including $R_{WJets}$,$R_{other}$ and $R_{QCD}$, which are defined in Equation.~\ref{eq:template_schemetwo}. The second type of nuisance parameters are introduced for evaluation of systematic uncertainties, summarized in Section.~\ref{sec:corrections}
+
+We measure parameters of interest together with nuisance parameters by maximizing total likelihood given data distributions. In Formula.~\ref{eq:theta_exp_evts}  expected number of events for bin i is the sum of signal and background templates ( histograms ). Depend on the choice of $\bm\theta$ the templates have different shapes and normalization. The way the templates change is modeled by template morphing. For every parameter, for instance $A_{FB}$, three versions of templates are provided, corresponding to $A_{FB}= -1,0,+1$. Note for this parameter, $A_{FB}$ templates are only provided for $n_{q\bar{q}}$ as it is the only process that depend on $A_{FB}$ in our model. Then during the fit, for each value of $A_{FB}$, the corresponding likelihood which is a function of $A_{FB}$ is calculated given expected number of events for every bin. For simplicity, let's focus on the i'th bin, denote as $n_{q\bar{q}}(A_{FB})$. This number is derived from interpolation of three set of numbers for the same bin,  $n_{q\bar{q}}(A_{FB}=-1,0,+1)$. In Theta, the interpolation is cubic for $|\theta|<1$ and linear for $|\theta|>1$.
+
+There is another way to model the change of expected number of events by introducing a parameter representing event rate. In our case, we introduce a nuisance parameter $c_{lumi}$ for the integrated luminosity. This parameter models the global normalization for all processes. Now the expected number of events for every bin looks like this:
+\begin{align}
+\lambda_i(\theta)= n(x_\mathrm{r},M_\mathrm{r},c_\mathrm{r}|\theta) =c_{lumi}\left[\sum_j n_\mathrm{bkg_j}(x_\mathrm{r},M_\mathrm{r},c_\mathrm{r}|\theta)+n_{gg}(x_\mathrm{r},M_\mathrm{r},c_\mathrm{r}|\theta) +n_\mathrm{q\bar{q}}(x_\mathrm{r}, M_\mathrm{r}, c_\mathrm{r}|\theta) \right]
+\label{eq:theta_exp_evts}
+\end{align}
+
+Finally, the likelihood also include the proper prior distribution for all parameters. Denote the prior distribution for parameter $\theta_j$ to be $\pi(\theta_j)$, the likelihood given data distribution become:
+\begin{equation}
+L(\bm{n}^{Data}|\bm \theta )=\prod_i Poisson(n_i^{Data}|\lambda_i(\bm{\theta}))\prod_j \pi(\theta_j)
+\label{eq:theta_likelihood}
+\end{equation}
+
+And the measured parameter values $\bm{\hat{\theta}}$ is taken as the maximal likelihood estimator.
+
+\begin{equation}
+\bm{\hat{\theta}} = argmax_{\bm{\theta}}L(\bm{n}^{Data}|\bm{\theta})
+\end{equation}
+
+In practice we choose to minimize the negative log-likelihood (NLL) below:
+\begin{equation}
+NLL(\bm n^{Data}|\bm \theta) = - \left[ \sum_i Poisson(n_i^{Data}|\lambda_i(\bm{\theta}) + \sum_j \pi(\theta_j) \right]
+\label{eq:NLL}
+\end{equation}
+
+% new subsection
+\subsection{Template binning} 
+Since we perform a binned likelihood fit based on 3 dimensional templates, we studied the optimal binning for our templates. On one hand we chose the binning such that every bin has sufficient number of events, on the other hand there are more bins in regions of phase space where signal and background distributions are more statistically distinguishable. 
+
+In addition we choose to limit the phase space of events in the region where $M_{t\bar{t}} < 980 \, GeV$ for two reasons. First reason is the MC templates beyond this kinematic region have much fewer events passed all selections, resulting a poor modeling of expected data distributions. Second reason is events with $M_{t\bar{t}} > 980 \, GeV$ tend to be boosted, causing decay products of top/anti-top quarks, especially hadronic decay side, to be  merged into fewer jets. Because our kinematic re-construction algorithm assumed fully resolved event topology, this causes a poorly reconstructed $t/\bar{t}$ momentum. 
+
+In the end, the templates are constructed from un-binned simulated events with the following binning:
+\begin{itemize}
+\item $c*$ : [-1.0,1.0], every 0.1
+\item $M_{t\bar{t}}$ : [350,980], every 30 GeV
+\item $|x_F|$ : [0,0.02,0.04,0.06,0.08,0.1,0.12,0.14,0.16,0.18,0.2,0.22,0.26,0.3,0.6]
+\end{itemize}
+
+The Fig.[\ref{fig:template_shapes_mu}] and Fig.[\ref{fig:template_shapes_el}] shows the projections of templates in all three dimensions for signal and background processes. The clear distinction of various process can be seen which suggest the potential statistical power of the template fit. 
+
+\begin{figure}[hbt]
+  \begin{center}
+    \includegraphics[width=0.49\linewidth]{mu/comb_x_shapes}
+    \includegraphics[width=0.49\linewidth]{mu/comb_y_shapes}
+    \includegraphics[width=0.49\linewidth]{mu/comb_z_shapes}
+    
+  \caption{\small The profile of templates of all processes projected to each of the three dimensions for $\mu+jets$ channel.}
+    \label{fig:template_shapes_mu}
+  \end{center}
+\end{figure}
+
+\begin{figure}[hbt]
+  \begin{center}
+    \includegraphics[width=0.49\linewidth]{el/comb_x_shapes}
+    \includegraphics[width=0.49\linewidth]{el/comb_y_shapes}
+    \includegraphics[width=0.49\linewidth]{el/comb_z_shapes}
+    
+  \caption{\small The profile of templates of all processes projected to each of the three dimensions for $e+jets$ channel.}
+    \label{fig:template_shapes_el}
+  \end{center}
+\end{figure}
+
+
+Although the original templates are 3 dimensional so  all three kinematic variables are fully correlated, we unrolled the templates into 1 dimension with arbitrary order of bins so we can use Theta to do the template fit for us. The Fig.[\ref{fig:1D template}] shows the unrolled 1D distribution for the combined simulated events for $\mu+jets$ with $Q>0$ for illustration purpose. Note this 1-D template is the one that actually feed into template fit, and the number of events in each bin corresponds to $\lambda_i$ in Eq.[\ref{eq:theta_likelihood}], which is the expected number of observations. 
+
+\begin{figure}[hbt]
+  \begin{center}
+    \includegraphics[width=0.49\linewidth]{other/m_1D_temp_MC_data}
+    \includegraphics[width=0.49\linewidth]{other/m_1D_temp_MC_data_zoom}
+    
+  \caption{\small The unrolled 1D distribution of all simulated process combined together according to their cross sections and normalized to the same integrated luminosity as collected data. Showing $\mu + jets$ with $Q>0$ only for simplicity. Left:entire distribution. Right: a zoom in of the figure in the left }
+    \label{fig:1D template}
+  \end{center}
+\end{figure}
+
+
+\subsection{Template building}
+The key ingredients in the template fit method is to produce up and down templates, which are histograms that contains information about expected number of events in every bin, corresponding to $\theta_j^{up}$ and $\theta_j^{down}$. Together with nominal templates, $\lambda_i(\theta)$ can be inferred by interpolating from these three sets of templates. 
+
+In order to build templates that is consistent with the fitting framework described above, we reformulate our statistical model from  probability distribution to the distribution of expected number of events. So we change Eq.~[\ref{eq:template_schemetwo}] to the following:
+
+\begin{align}
+F(\bm{x};Q|\bm{\theta}) = \sum_j F_{bkg_j}(\bm{x};Q|\bm{\theta})+F_{gg}(\bm{x};Q|\bm{\theta})+F_{q\bar{q}}(\bm{x};Q|\bm{\theta})
+\end{align}
+
+Here $\bm{x}=(|x_{F}|,M_{t\bar{t}},c*)$ is the triple of reconstructed kinematic variables of top quark, Q is the charge of the lepton in the event as we fit $Q=\pm1$ events separately. All $F(\bm{x};Q|\bm{\theta})$ are from fully selected and reconstructed events from MC simulation ( except for data driven templates ) and are normalized to the same integrated luminosity as Data.
+
+So here we list all relevant information about producing up/down templates for all parameters. We start from our parameters of interest, $A_{FB}$ and $R_{q\bar{q}}$. For $A_{FB}$, based on Eq.[4,ref], we build our templates from $q\bar{q}\rightarrow t\bar{t}$ templates by first symmetrize over production angle $c*$ and then re-weight based on the value of $A_{FB}$. 
+\begin{equation}
+\label{eq:Fqq_AFB}
+F_{q\bar{q}}(\bm{x};Q|A_{FB}) = F_{qs}(\bm{x};Q)+ A_{FB} F_{qa}(\bm{x};Q)
+\end{equation}
+Where $F_{qs}$ is the symmetrized $q\bar{q}$ templates which is produced from the original $q\bar{q}$ MC templates, $F_{q\bar{q}}$, following the description of Section.~\ref{sec:analysis scheme}
+\begin{equation}
+F_{qs}(|x_F|,M_{t\bar{t}},c*;Q) = \frac{1}{2}\left[ F_{q\bar{q}}(|x_F|,M_{t\bar{t}},c_*;Q)+F_{q\bar{q}}(|x_F|,M_{t\bar{t}},-c_*;-Q)\right]
+\end{equation}
+
+% new edit
+In Fig.\ref{fig:AFB_templates} we show the $F_{q\bar{q}}(c^*|A_{FB})$ templates corresponding to $A_{FB}=-1.0,0,+1.0$ for both channels.
+
+\begin{figure}[hbt]
+  \begin{center}
+    \includegraphics[width=0.49\linewidth]{mu/mu_f_combo__qq__AFB__cstar_sys}
+    \includegraphics[width=0.49\linewidth]{el/el_f_combo__qq__AFB__cstar_sys}
+
+  \caption{\small The distribution of MC simulated $q\bar{q}\rightarrow t\bar{t}$ events with $A_{FB}$= -1.0 (blue), 0 (black) and +1.0 (red), for $\mu+jets$(left) and $e+jets$(right)}
+    \label{fig:AFB_templates}
+  \end{center}
+\end{figure}
+
+Note here $F_{gg}$ is the template consist of both $gg\rightarrow t\bar{t}$ and non-gg initiated $t\bar{t}$ events. The $gg$ initiated events are symmetric in $c_*$, by performing the same procedure that is applied to build $F_{q\bar{q}}$. In comparison, non-gg initiated part of $F_{gg}$ is not symmetrized in order to preserve the intrinsic forward-backward asymmetry in $qg$ initiated $t\bar{t}$ events. This guarantees the $A_{FB}$ fit from data only reflects the asymmetry in $q\bar{q}\rightarrow t\bar{t}$ process, as desired. 
+
+Next, we produce the up/down templates representing the relative abundance of $q\bar{q}\rightarrow t\bar{t}$ in all signal $t\bar{t}$ events, denote as $R_{q\bar{q}}$ in Eq.[\ref{eq:template_schemetwo}]. Per the design of Theta Framework, instead of using $R_{q\bar{q}}$ as parameter directly,  we introduced a different parameter, $SF_{q\bar{q}}$ which is a scale factor on the normalization of $q\bar{q}$ templates. The nominal value of $SF_{q\bar{q}} = 1$. We then have templates of $F_{q\bar{q}}$ and $F_{gg}$ as follows:
+\begin{align}
+\label{eq:SF_qq}
+F_{q\bar{q}}(\bm{x};Q|SF_{q\bar{q}})=SF_{q\bar{q}} * F_{qs}(\bm{x};Q) 
+\end{align}
+\begin{align}
+F_{gg}(\bm{x};Q|SF_{q\bar{q}})=\frac{N_{t\bar{t}}-SF_{q\bar{q}}N_{q\bar{q}}}{N_{t\bar{t}}-N_{q\bar{q}}}\, F_{gg}(\bm{x};Q)
+\end{align} 
+Where $N_{t\bar{t}}$ and $N_{q\bar{q}}$ are nominal number of events in signal $t\bar{t}$ process and $gg$ process. The above equations implicitly constrain $N_{t\bar{t}}$ to be a constant for any value of $SF_{q\bar{q}}$, which is implied in the original formalism of our statistical model in Eq.[\ref{eq:template_schemetwo}]. Note here in Eq.[\ref{eq:SF_qq}] we scale symmetric $q\bar{q}$ templates rather than the one with non-zero $A_{FB}$ as in Eq.[\ref{eq:Fqq_AFB}] to get the up/down templates for $SF_{q\bar{q}}$. This because we want to model the change of distribution shape and normalization due to $A_{FB}$ and $SF_{q\bar{q}}$ separately, although they are correlated in predicting the expected number of events for every bin. 
+
+In addition, we note here $F_{q\bar{q}}$ and $F_{gg}$ are the only templates depend on $SF_{q\bar{q}}$, and it has no effect on $F_{bkg}$. $SF_{q\bar{q}}$ is directly measured from the fitting, and $R_{q\bar{q}}$ is related to $SF_{q\bar{q}}$ via the following equation:
+\begin{equation}
+R_{q\bar{q}} = SF_{q\bar{q}}\,R_{q\bar{q}}^0 = \frac{N_{q\bar{q}}^{fit}}{N_{t\bar{t}}^{fit}}
+\end{equation}
+In our analysis we use the post-fit counts, $N_{q\bar{q}}^{fit}$ and $N_{t\bar{t}}^{fit}$ to calculate the fit $R_{q\bar{q}}$.
+
+Similarly, we introduce a scale factor for each background process, $SF_{bkg_j}$ that corresponds to $R_{bkg_j}$ defined in Eq.[\ref{eq:template_schemetwo}]. The corresponding templates are defined as follows:
+\begin{equation}
+\label{eq:SF_bkg}
+F_{bkg_j}(\bm{x};Q|SF_{bkg}) = SF_{bkg_j}\,F_{bkg_j}(\bm x ;Q) 
+\end{equation}
+
+\begin{equation}
+F_{gg}(\bm{x};Q|SF_{bkg_j}) = \frac{N_{t\bar{t}}-(SF_{bkg_j}-1)\,N_{bkg_j}}{N_{t\bar{t}}}\,F_{gg}(\bm{x};Q)
+\end{equation}
+
+\begin{equation}
+F_{q\bar{q}}(\bm{x};Q|SF_{bkg_j}) = \frac{N_{t\bar{t}}-(SF_{bkg_j}-1)\,N_{bkg_j}}{N_{t\bar{t}}}\,F_{q\bar{q}}(\bm{x};Q)
+\end{equation}
+
+From now on, we will use $R_{bkg_j}$ exclusively, instead of usng $SF_{bkg_j}$, for simplicity and consistency with the original formalism of our model described in Section.[\ref{sec:analysis scheme}].
+
+Finally, the up/down templates associated with systematic uncertainties are produced by applying alternative re-weighting factors $w_{\pm}$ on MC templates, which correspond to $\pm 1 \sigma$ variation from nominal templates. 
+
+% new edit
+In Fig.\ref{fig:gg_SF_bkg_templates} we show $F_{gg}(\bm{x}|SF_{other\_bkg})$ and $F_{other\_bkg}(\bm{x}|SF_{other\_bkg})$ templates for $\mu$+jets channel with $SF_{other\_bkg}= 0.2,1.0,1.8$, in three projected directions of templates. It shows for the "up" templates, that is $SF_{other\_bkg}=1.8$ (the normalization of $other\_bkg$ process being 1.8 times the nominal value), the total events of gg/qg process become fewer than its nominal value, while $other\_bkg$ template is scaled up by 1.8 times, as we expected.
+
+\begin{figure}[hbt]
+  \begin{center}
+    \includegraphics[width=0.49\linewidth]{mu/mu_f_combo__other_bkg__R_other_bkg_mu__cstar_sys}
+    \includegraphics[width=0.49\linewidth]{mu/mu_f_combo__gg__R_other_bkg_mu__cstar_sys}
+
+  \caption{\small The $c*$ projection of $F_{gg}$ (left) and $F_{other\_bkg}$ (right) templates with $SF_{other\_bkg}$ = 0.2 (blue), 1.0 (black) and 1.8 (red)}
+    \label{fig:gg_SF_bkg_templates}
+  \end{center}
+\end{figure}
+
+
+\subsection{Lepton channel combination} % new section
+\label{sec:lepton combination}
+
+In this analysis, we divide observed data into four parts ( in Theta, they are called "Observable"), depending on lepton type of final states ( e or $\mu$ ) and type of lepton charge type ( positive or negative ), and fit each of the four parts individually. However, in our model, the parameters $A_{FB}$ and $R_{q\bar{q}}$ are independent with final states. As a result, we perform the simultaneous template fit in Theta to find the best $A_{FB}$ and $R_{q\bar{q}}$ that fit the data. 
+
+The basic idea of combined fit is very simple. Instead of minimizing negative log likelihood as defined in Eq.[\ref{eq:NLL}] for all four observable, we minimize the sum of the NLL, as defined below:
+\begin{equation}
+NLL_{total} (\bm n^{Data}) = \sum_{Q=\pm 1} NLL(\bm n^{Data};e, Q |A_{FB},R_{q\bar{q}},\bm \theta_{e}) +  \sum_{Q=\pm 1} NLL(\bm n^{Data};\mu, Q |A_{FB},R_{q\bar{q}},\bm \theta_{\mu})
+\end{equation}
+
+Note that fit takes into the correlations of all four observable via template morphing. We build the up/down templates for each parameter $\theta_i$ that reflect the proper correlation. For example, change in $A_{FB}$ will and only will affect the distribution of $q\bar{q}\rightarrow t\bar{t}$ process for all four both $e+jets$ and $\mu + jets$ final states. It will not affect distributions of any other processes. The correlation between $e\/\mu$ channels can be seen from Fig.[\ref{fig:AFB_templates}].
+
+Unlike the common parameter $A_{FB}$ and $R_{q\bar{q}}$, we model the normalization of background processes , such as $R_{WJets}$, $R_{other\_bkg}$ and $R_{QCD}$, separately for $e+jets$ and $mu+jets$ channels. So we introduce two nuisance parameters for each type of background process, one for $e+jets$ channel, another for $\mu+jets$ channel. For instance, we introduce $R_{WJets\_el}$ and $R_{WJets\_\mu}$ and build two sets of un-correlated templates, as shown in Fig.[??]
+
+A final note is on the set of templates for same lepton type, but different charge type , such as $F_{q\bar{q}}(\bm x;e,Q>0|A_{FB})$ and $F_{q\bar{q}}(\bm x;e,Q<0|A_{FB})$. We assume they are always correlated. Therefore most of the templates we show are charge summed for visualization purpose, while in template fit the charge separated templates are used for calculating likelihood.
+
+A complete list of figures for templates that are used for the fitting is provided in Appendix.[\ref{sec:all templates}]. More details of all parameters are listed in Table.[\ref{table:priors}]
+
+\begin{figure}[hbt]
+  \begin{center}
+    \includegraphics[width=0.49\linewidth]{mu/mu_f_combo__WJets__R_WJets_mu__xf_sys}
+    \includegraphics[width=0.49\linewidth]{el/el_f_combo__WJets__R_WJets_el__xf_sys}
+
+  \caption{\small The $|x_F|$ projection of $F_{WJets}(\bm x;e|R_{WJets\_el})$ (left) and $F_{WJets}(\bm x;\mu|R_{WJets\_\mu})$ (right) templates with $R_{WJets\_el}$/$R_{WJets\_\mu}$ = 0.2 (blue), 1.0 (black) and 1.8 (red)}
+    \label{fig:gg_SF_bkg_templates}
+  \end{center}
+\end{figure}
+
+
+\subsection{Priors}
+As described in Section.[\ref{sec:theta_methods}] the likelihood also include the prior distribution for each parameter. In addition, since the template morphine is based on interpolation of up/down/nominal templates, we also need to keep track of the choice of up/down templates corresponding to each parameters. We summarize these information in Table.[\ref{table:priors}]
+
+\begin{table}[htb]
+\centering
+\begin{tabular}{|c|c c|c c c| c |}
+\hline
+Parameter     & Template Type & Prior         & down  & central  & up  & channel   \\ \hline
+$A_{FB}$      & shape         & flat         & -1.0  & 0.0  & 1.0  & both \\
+$R_{q\bar{q}}$ & shape         & flat         & 0.2  & 1.0  & 1.8  & both \\ \hline\hline
+
+$R_{WJets\_\mu}$   & shape         & flat        & 0.2   & 1.0   & 1.8 & $\mu$+jets \\ 
+$R_{other\_\mu}$   & shape         & flat         & 0.2   & 1.0  & 1.8 & $\mu$+jets \\
+$R_{WJets\_e}$   & shape         & flat        & 0.2   & 1.0   & 1.8 & e+jets \\ 
+$R_{other\_e}$   & shape         & flat         & 0.2   & 1.0  & 1.8 & e+jets \\
+$R_{QCD\_e}$     & rate         & log-normal         & 0.8   & 1.0  & 1.2 & e+jets \\
+Lumi          & rate          & log-normal      & -0.045 & 0.0   & 0.045 & both\\
+Systematics   & shape         & Gauss      & -1$\sigma$ & 0.0 & 1$\sigma$  & depends \\ \hline\hline
+\end{tabular}
+\caption{Type and prior for all parameters. Flat prior means uniform prior distribution. Gauss prior means the prior distribution is a Normal distribution with $\mu=0$,$\sigma=1$. For nuisance parameters associated with shape based systematic uncertainties, we assume the up/down templates correspond to $1 \sigma$ away from nominal values in the prior distributions. The up/down value for $R_process$ is relative to the nominal value. The corresponding templates are produced according to Eq.~\ref{eq:SF_qq} and \ref{eq:SF_bkg} }
+\label{table:priors}
+\end{table}
+%what each chapter is about

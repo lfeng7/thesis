@@ -1,0 +1,248 @@
+\chapter{Physical Object Reconstruction and Event Selection}
+\label{sec:objects}
+
+In this chapter, the reconstruction of physical objects such as leptons and jets out of sub-detector response is first introduced, following by the specific definition of physical objects used in the analysis of this thesis. Finally, the sequential $\ttbar$ signal event selection and the post selection control plots are provided.
+
+
+\section{Reconstruction and Selection of Physical Objects}
+\label{sec:Reco}
+
+In this thesis, the fundamental building blocks of $\ttbar$ events are physics objects, such as electrons, muons, jets and missing transverse energy (MET) which representing neutrinos. In CMS, and LHC in general, these objects are reconstructed from digital signals from all relevant sub detectors, including trackers, calorimeters and muon trackers, using Particle-Flow (PF) algorithm \cite{CMS-PF-09}, together with jet clustering algorithms.
+
+
+The list of reconstructed objects, called PF candidates, are the starting point of further event selection, that applies specific criteria on the quality and kinematic property on the PF candidates, to keep as much signal events as possible while reduce the size of background events. The PF candidates after the selections are assigned as final states of $\ttbar$ events, in this thesis, lepton and 4/5 jets. Finally the top and anti-top quarks are reconstructed from the final states, by performing the kinematic reconstruction that choose the best combination to make a plausible pair of top quarks. As the sensitivity of the measurement on $\AFB$ depends on an accurate reconstruction of $\ttbar$ pairs, it is critical to understand the reconstruction of each individual pieces in this picture.
+
+
+\subsection{Overview of event reconstruction}
+
+The particle-flow algorithm reconstruct all stable particles, including electrons, muons, photons, charged hadrons and neutral hadrons, by combing the information of CMS sub-detectors optimally according to carefully designed metrics. The list of reconstructed particles are then used to construct jets, which is the hadronisation products of partons, and MET, which is the imbalance of transverse momentum of all PF candidates. In addition, the PF candidates are also used to calculate PF based relative isolation ($RelIso$) of leptons, which is the relative proportion of momentum of lepton candidate out of PF among all PF candidates within a certain distance from the lepton. This isolation variable is an important discriminating variable for rejecting fake leptons. 
+
+PF algorithm can apply on both data and MC simulation, and the PF candidates out of MC is used for modeling the distribution of signal and background when possible. Additionally, the PF candidates are directly comparable to the particles from MC generator ( before further feed into CMS detector simulator).
+
+\subsubsection*{Fundamental Elements}
+\label{sec: PF elements}
+The fundamental building blocks of particle reconstruction are charged particle tracks, calorimeter clusters and muon tracks. A brief overview of the techniques of reconstruction of these elements is given below.
+ 
+Tracks are reconstructed from the hits in the layers of innermost pixel tracker and the silicone strip tracker outside the pixel tracker, using an iterative algorithm \cite{CMS_tracking}. The tracking software is called Combinatorial Track Finder (CTF), based on the technique of combinatorial kalman filter, that allows pattern recognition and track finding at the same time. 
+
+Starting from the collection of hits in tracker systems, as many as six iteration of track finding is performed. The initial iterations reconstruct tracks that are easiest to find, and with very tight criteria, leading to reconstruction of high $p_T$ and from primary interaction vertex. The hits that belongs to previous reconstructed tracks are removed. Later iterations will start with looser seeding criteria, and will reconstruct the tracks usually from secondary vertices. The efficiency of charged hadron tracks in central region of the detector is above 90\%, with a resolution in measured $p_T$ of about 1.5\%.
+ 
+Calorimeter clusters are used for measuring the energy deposit of both charged particles, such as electrons or charged hadrons and neutral particles, such as photon and neutral hadrons. It is critical in terms of detecting the energy and direction of neutral particles, as they don't leave any tracks in tracker system. In addition, they are used to identify and reconstruct electrons together with the Bremsstrahlung photons. The clustering algorithm used in PF also need to separate the energy deposit of neutral particles from charged particles. 
+
+The clustering algorithm first identify cluster seeds which are cells in calorimeters with maximal energy, then topological clusters are formed around the seed by aggregating the adjacent cells that has energy deposit beyond a certain threshold. The clustering algorithm is performed separately in all sub-detectors, including ECAL, HCAL and PS calorimeters. The reconstructed energy clusters are later used for charge particle reconstruction by combining the tracking information.
+ 
+\subsubsection*{Particle-Flow Algortithms} 
+After the input elements are gathered, PF algorithm is applied to reconstruct particles. The PF algorithm can be separated into two stages. The first stage to link several elements in various CMS sub-detectors, called a block, and treating the block as detector response from one single particles. This process can avoid the double counting the same particle in several detectors, as well as improving the accuracy of particle identification. For example, a charged hadron, like pions, will leave hits in tracker which are reconstructed as tracks, and create energy deposit in ECAL and HCAL, which are individually grouped as clusters. The link algorithm is performed for each pair of detector elements, and if the pair of elements are marginally consistent with the hypothesis of coming from the same stable particle, the link will be established. For example, a link between a track and ECAL or HCAL clusters is established if the extrapolated position of the track in the corresponding calorimetry is within the boundary the linked cluster. In addition to forming links, a link distance between the extrapolated track position and the cluster position is computed to quantify the consistency of the link.
+
+The second stage is particle reconstruction and identification from the linked blocks. Different types of particles are reconstructed and identified as part of the block, in an ordered of muon, electron, neutral hadrons, charged hadrons,and photons. The successful reconstruction of each particle relies on consistency of the combination of elements in the block that is used for the reconstruction. If more than one combination of elements are possible, the optimal combination is selected based on the distance computed in the linking stage. Any element, such as tracks and calorimeters clusters , once identified for reconstruction of a particle, is removed afterwards, and remaining elements in a block is used for reconstruction of other particles. 
+
+
+
+%\section{Candidate Event Selection}
+%\label{sec:selection}
+
+%
+
+\subsection{Muons}
+\subsubsection*{Muon Reconstruction}
+Muons are the particles that are reconstructed best in CMS due to the superior inner tracker, muon system and the strong magnetic field from the superconducting solenoid. Muons are reconstructed based on the tracker tracks in the inner tracker and muon tracks in the muon system. There are two types of muons depends on the reconstruction algorithm: tracker muons and global muons.\cite{CMS_muon}
+
+Global muons are reconstructed first by finding matching tracker tracks and muon tracks, by propagate both tracks into a common region. Once matching tracks are found, the hits belong to the found tracks are fitted again using a Kalman-filter technique, to establish a better global muon with higher momentum resolution than standalone fit for both systems.
+
+Tracker muons are reconstructed inside-out, meaning that the tracker tracks are propagated all the way to the muon system, taking into account of the magnetic field, energy loss and scattering in the materials in between. Any tracks with matching muon system hits in at least one segment of muon system are considered as tracker muons.
+
+The muon reconstruction efficiency in CMS is very high, with 99\% of muons within muon system geometric acceptance and having sufficient high $p_T$ reconstructed as either tracker muons or global muons. Most of the track muons and global muons are reconstructed from the same tracks, and are merged into a single muon candidate. Once muon candidates are reconstructed, in actual down stream physics analysis, a further selection on the muon candidates is applied to achieve a balance of efficiency of low fake muon or cosmic muon rate.
+
+\subsubsection*{Muon Selection}
+For the muon+jets channel, both data and simulation are required to pass additional offline high level trigger \texttt{HLT\_IsoMu24\_eta2p1\_v*}. This trigger selects events with at least one isolated muon of $p_T>24$ GeV and $|\eta|<2.1$.  Additionally, real and simulated events are required to have exactly one global muon candidate with $p_T>26$~GeV and $|\eta|<2.1$. In order to improve the quality of selected muon, it is also required to satisfy the Muon POG ``tight'' criteria for 2012 data \cite{Muon_POG}. The selected muon must have global track fit quality $\chi^2/ndf<10$. It must have at least one muon chamber hit included in the global-muon track fit, with muon segments in at least two muon stations. In addition, the muons must have at least one hit in pixel detector and have at least 5 hits in the inner tracker. In order to assure the muons are from primary collisions, the tracker tracks must have transverse and longitudinal impact parameters with respect to the primary vertex smaller than 2 mm and 5 mm, respectively.
+Additionally, each muon candidate is required to satisfy a particle flow based isolation (\texttt{RelIso}) requirement $\mathrm{PF}_\mathrm{iso}/p_{T}<0.12$ where the isolation is of the ``combined relative'' type with $\Delta\beta$ corrections applied to reduce pileup effects and is computed within a cone size of 0.4. 
+
+\subsection{Electrons}
+\subsubsection*{Electron Reconstruction}
+Unlike muons, electrons are reconstructed by combining the tracks from inner tracker and cluster of energy deposit in ECAL.  
+
+Because of radiative energy loss of electron via interaction with materials in tracking system, the standard Kalman filter fitting used in PF is not sufficient to reconstruct electron tracks well enough. Electron tracks are reconstructed first using the same tracking algorithm for all charged particles in PF, described in \ref{sec: PF elements}. This first pass using KF usually works for the case of small bremsstrahlung. For the case of non-negligible bremsstrahlung, KF will fail reconstructing the correct track by missing hits or reconstruct tracks with bad quality (large $\chi_{KF}$). In this case, a second pass of fitting is performed, using a dedicated Gaussian sum fitter (GSF).
+
+As part of PF algorithm, ECAL clusters are reconstructed based on GSF tracks. The goal of clustering algorithm is to cluster all the crystals in ECAL that have energy deposit from the electron and the its bremsstrahlung photon, so the energy of electron can be accurately measured. The clusters from the electron itself are identified by extrapolating the GSF tracks to the ECAL and finding the matching ECAL crystals; the clusters from the photon are identified by drawing a tangent line from the GSF tracks in each layer of the tracker, and extend the lines to ECAL and finding the matching crystals. The reason is that bremsstrahlung happens mostly in the material dense region of the detector before the electron reaches the ECAL, which is the tracker layers.
+
+Finally electron candidates are reconstructed by associating tracks and ECAL clusters, so both momentum and energy is measured. The charge of electron is mostly from the curvature of the tracks. 
+
+\subsubsection*{Electron Identification}
+
+In order to identify signal electrons which are from prompt decay of the mother particles originated form primary vertices, and separate them from background sources, a further selection procedure is needed to identify good quality electrons. The main sources of background are the following: electron pairs from photon conversion, jets misidentified as electrons, electrons from semileptonic decay of b and c quarks. Two different type of electron ID algorithms are widely used in physics analysis , one is cut-bases, which is a sequential selection on a set of discriminant; another one is a MVA based approach, which use boosted decision tree to combine many variables to maximize the discriminating power of separating signal and background electron candidates. In this thesis, we use the cut-based selection, which is simpler, more transparent and more robust. 
+
+Among the discriminating variables used for electron ID, one is especially important, the relative isolation $\mathrm{RelIso}$ of electrons. The requirement of isolation is especially effective in reducing the background of jets misidentified as electrons or the electron within a jet , which is originated from the decay of b or c quarks. For both cases, there are a significant amount of charged particles around the electron candidate. Therefore,$\mathrm{RelIso_{PF}}$ that quantifies the total energy surrounding the electron candidate, is defined as follows, based on the PF candidates:
+
+\begin{equation}
+\label{eq: reliso}
+\mathrm{RelIso_{PF}} = \frac{\sum\pt^{\mathrm{charged}}+\max\left[ 0,\sum\pt^{\mathrm{neutral had}}+\sum\pt^\gamma-\pt^{\mathrm{PU}} \right]    }{\pt^{\mathrm{electron}}} 
+\end{equation}
+
+
+\subsubsection*{Electron Selection}
+
+For electron+jets channel, both data and simulation events are required to pass offline trigger \texttt{HLT\_Ele27\_WP80}. This trigger select events with at least one electron with $p_T>27$GeV.  To further select top pair events it is required to have exactly one particle flow electron with $p_T>30$GeV and $|\eta|<2.5$. Electrons with a supercluster in the eta range of 1.4442 and 1.5660, corresponding to the transition region between barrel and end-cap calorimeter are not selected. To insure the selected electron is from primary colision it is required to be associated with tracks that has impact parameter with respect to beam spot smaller than 0.02 cm, and has longitudinal distance from primary vertex smaller than 0.1 cm. In addition, a cut based electron ID is applied and the selected electron is required to satisfy "tight" criteria\cite{electron_cut_based_ID}. Additionally, each electron candidate is required to satisfy a particle flow isolation smaller than 0.1 , with a cone size of 0.3 . 
+
+In order to reject electrons originated from the conversion of photons, a vertex fit conversion method is used and the electron selected is required to pass this conversion veto. In addition, the GSF track associated with the selected electron is required to have no missing hits in inner tracking system.
+
+\subsection{Veto Leptons}
+Finally, to suppress signal from dileptonic top events, any event with a second veto muon or veto electron is not selected.
+
+The veto muon is defined as having particle flow muon ID, being a global muon, with $p_T>10 GeV$, $|\eta|<2.5$ and $RelIso(R=0.4)<0.2$.
+
+The veto electron is defined as an electron with $p_T>20$GeV, $|\eta|<2.5$ and $RelIso(R=0.3)<0.15$. In addtion, the veto electrons are required to pass cut based electron ID with "Loose" working point as defined in EGamma POG Twiki\cite{electron_cut_based_ID}.
+
+\subsection{Jets}
+Jets are observable objects in hadron colliders that are formed by grouping collimated bunches of stable hadrons originated from partons (quarks and gluons). As a direct result of QCD and asymptotic freedom discuss in , no isolated , so called bare quarks or gluons exist. Rather, they undergo hadronization process, forming stable particles, and observed as parton showers in tracker and calorimeters. The shower of stable particles are clustered using jet clustering algorithms to form jets with a certain cone size. These jets are the product of reverse engineering of the hadronization process, and are studied using the parton level calculations, as demonstrate in the Fig.\ref{fig:jets_cartoon}.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.7\linewidth]{general_fig/reco/Sketch_PartonParticleCaloJet}
+	\caption[A Schematic over view of jets]{A Schematic over view of jets, and the relationship to partons in hadron coliders.\cite{Jet_cartoon}}
+	\label{fig:jets_cartoon}
+\end{figure}
+
+
+\subsubsection*{Jets Reconstruction}
+Jets used in the analysis of this thesis are reconstructed from stable hadrons out of PF algorithm in CMS. Due to the complexity of this topic, only a very brief summary is provided below, more details are provided in \cite{jet_ak,JEC_8TeV}.
+
+There are many different jet clustering algorithms, but they should all satisfy the following requirements:
+\begin{itemize}
+	\item Collinear-safe: the clustered jets should be stable under the splitting a single particle into several particles of low angular separation. This is required by the common process of collinear gluon radiation.
+	\item Infrared-safe: clustering algorithm should be stable by adding or removing low energy radiation. It means detector noise or additional PU hadrons will not significantly alter the result of jet clustering
+\end{itemize}
+In this thesis, and most of the analysis in CMS, the anti-kT (AK) algorithm is used for jet clustering. This algorithm cluster jet from stable particles by recursively combine soft (carries small transverse momentum) particles with hard ones. It belongs to a general type of clustering algorithms called sequential recombination algorithms, including kT algorithm and Cambridge-Aachen Algorithms.
+
+The AK algorithms starts from defining a momentum weighted distance measure between any pair of particles (or intermediate jet, called pseudo-jet) i,j, defined as follows:
+\begin{gather}
+d_{ij} = \min(1/k_{T,i}^2,1/k_{T,j}^2)\frac{\Delta R^2_{ij}}{R^2},\\
+d_{iB} = 1/k_{T,i}^2
+\end{gather}
+where $k_{T,i}$ are transverse momentum of i'th particle, $\Delta R_{ij}^2=(y_i-y_j)^2+(\phi_i-\phi_j)^2$ are commonly used distance measure in LHC , and $R$ is the desired cone size of the clustered jet. In this thesis, we use the jets clustered with $R=0.5$, and denote them as $AK5$ jets. 
+
+In each iteration, every pairwise distance $d_{ij}$ , and the beam distance $d_{iB}$ are calculated. If the smallest of all the distances calculated is a pairwise distance $d_{ij}$, the pair of particles are merged by summing their four momentums. If the smallest one is $d_{iB}$, then the i'th particle (or pseudo-jet) is called a new jet, and it is removed from the list of particles/pseudo-jets. This combination process is repeated until all jets are identified.
+
+What this algorithm actually does is to merge soft particles into a hard particle/pseudo-jet that is within the cone centered around the hard pseudo-jet of size $R$. Two hard jets will be merged into a new jet only when there distance is within $R$, otherwise they are kept as separate jets, per the construction of $d_iB$. One example of the result of AK algorithm is shown in Fig.? , using a cone size of $R=1$, on the parton level simulated event. It shows the clusted jets are indeed clustered per the design of the algorithm.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.7\linewidth]{general_fig/reco/AK_alg}
+	\caption[An example of AK clustering algorithm]
+	{\small An example of AK clustering algorithm, based on simulation, taken from \cite{jet_ak}. Cone size is $R=1$. Each colored cone is a clustered jet. The histogram shows the $p_T$ of underlying partons.}
+	\label{fig:akalg}
+\end{figure}
+
+
+
+\subsubsection*{Jets Selection}
+The hadronic jets used in this analysis are reconstructed using the anti-kT algorithm with cone size 0.5. Jet energy corrections have being applied using the JEC from \texttt{Winter14(5\_3\_X)} as recommended by JetMET POG \cite{JEC_intro}\cite{JEC_paper}. The list of JEC txt files used is as follows:
+\begin{itemize}
+\item \texttt{START53\_V27\_L1FastJet\_AK5PFchs.txt}
+\item \texttt{START53\_V27\_L2Relative\_AK5PFchs.txt}
+\item \texttt{START53\_V27\_L3Absolute\_AK5PFchs.txt}
+\item \texttt{Winter14\_V5\_DATA\_L1FastJet\_AK5PFchs.txt}
+\item \texttt{Winter14\_V5\_DATA\_L2Relative\_AK5PFchs.txt}
+\item \texttt{Winter14\_V5\_DATA\_L3Absolute\_AK5PFchs.txt}
+\item \texttt{Winter14\_V5\_DATA\_L2L3Residual\_AK5PFchs.txt}
+\end{itemize}  
+
+All jets are required to have reconstructed pseudorapidities in the region $|\eta|<2.5$.  The selected jets in each event are required to have transverse momenta larger than 30GeV. Events with more than 5 selected jets or less than 4 selected jets are excluded. 
+
+In addition to these kinematic requirements, we also require that at least two jets be identified as a b-jet.  The b-jet identification is based upon the Combined Secondary Vertex (CSV) tagging algorithm \cite{CSV_note} and requires that the CSV discriminator be larger than 0.679.
+
+\section{Event Selection}
+\label{sec:event_selection}
+
+The event selection for this analysis follows the Top PAG Run-1 selection recommendations \cite{top_selection}.  To select top pair events in the lepton + jet channel, the candidate event is required to have a high $p_T$ electron or muon and four or five high $p_T$ jets.  In order to reduce background events such as \texttt{W+jets} two of the jets must be tagged as b-jets.   This analysis is based upon particle flow objects discussed in previous section. 
+
+\subsection{Cut-flow}
+
+The selection criteria are applied sequentially to both data and MC.  The numbers of real and simulated events passing each step are summarized in Table~\ref{tab:cut-flow}.  The final entry in the table lists the number selected events for which the kinematic reconstruction [as described in section~\ref{sec:reconstruction}] is successful. Only in the last step, the MC event rates have been corrected using scale factors to account for efficiency differences between data and MC for the lepton ID, trigger, and btagging requirements. Total number of events in simulation has been normalized to the integrated luminosity corresponding to the data using the total cross sections for each individual process as listed in Table~\ref{tab:sim_samples2}. 
+
+
+\begin{table}[h!]
+\small
+\centering
+\begin{tabular}{|c | c  c | c  c|}
+\hline
+ & \multicolumn{2}{|c|}{e+jets}&\multicolumn{2}{|c|}{$\mu$+jets} \\
+\hline
+\textbf{Selection Step} & $N_{Data}$ & $N_{MC}$ & $N_{Data}$ & $N_{MC}$ \\
+\hline
+trigger & 268293848 & 29318762 & 123122494 & 32845362  \\
+lepton & 64361692 & 20186742 & 32845362 & 25208917 \\ 
+dilepton veto & 62447916 & 19446044 & 74041500 & 24085598  \\ 
+$N_{jets}\geqslant4$ & 254892 & 227859 & 222279 & 246025  \\
+$N_{btags}\geqslant2$ & 56015 & 62788 & 55730 & 67974  \\
+$N_{jets}\leqslant5$ and kin Reco & 42923 & 47199 & 45321 & 51061  \\
+\hline
+\end{tabular}
+\caption{\small Event yields after HLT trigger applied, contains one good lepton, not containing another lepton, has at least four selected jets, has at least two of the jets tagged as b jets, has no more than 5 selected jets while successfully being reconstructed. MC corrections such as trigger efficiency, pileup re-weighting etc have been applied in the last step of the cut flow. All MC events have been normalized to the same integrated luminosity as Data.}
+
+\label{tab:cut-flow}
+\end{table}
+
+The effectiveness of the selection criteria is illustrated in Figs.~\ref{tagging_results}.  The plot shows the normalized abundances of simulated $t\bar t$ and background events as functions of reconstructed $t\bar t$ mass before the application of the criteria.  The sample is dominated by background from $W$+jets production.  The plot on the right shows the same distributions after the application of the selection criteria.  Clearly the signal $t\bar{t}$ is greatly enhanced with respect to the backgrounds.   
+
+Note that in the last step we merged several background processes into a single template called {\it other backgrounds}, which includes single top production, Drell-Yan, and $t\bar{t}$ events that are not e+jets or mu+jets.  On the other hand, we separate W+Jets and QCD process from other backgrounds. The motivation is that the processes included in our defined "other backgrounds" are well modeled by MC simulations. By merging them together into one template we essentially fix the relative compositions among those processes according to the expected values given by MC.  In contrast, according to many existing analysis the W+Jets are not very well modeled in the MC simulations we used that are generated using matrix element calculated in leading order. For data driven QCD the uncertainty of normalization is fairly large as discussed in section [\ref{sec:data driven qcd}].  So we separate W+Jets process and QCD process from other backgrounds in the templates and later simultaneously fit for the normalization during the template fit.
+
+After applying the selection criteria and reconstruction algorithm to the simulated data sets, semi-leptonic top pair events comprise 90\% of the resulting sample. The relative fractions of events from signal and various backgrounds are listed in Table~\ref{tab:mc_fractions}. The dominant background is "other backgrounds". 
+
+\begin{table}[h!]
+\small
+\centering
+\begin{tabular}{|c | c  c | c  c|}
+\hline
+ & \multicolumn{2}{|c|}{e+jets}&\multicolumn{2}{|c|}{$\mu$+jets} \\
+\hline
+\textbf{Process} & $N_{MC}$ & Fraction & $N_{MC}$ & Fraction \\
+\hline
+$q\bar{q}\rightarrow t\bar{t}$ & 5173 & 11.0 & 5510 & 10.8 \\
+$gg/qg\rightarrow t\bar{t}$ & 33824 & 71.7 & 36126 & 70.8 \\ 
+other backgrounds & 6914 & 14.7 & 8530 & 16.7 \\ 
+W+Jets & 764 & 1.6 & 894 & 1.8 \\
+QCD &522 & 1.1 & NA & NA \\
+Total & 47199 & 100 & 51061 & 100 \\
+\hline
+\end{tabular}
+\caption{\small Expected number of events and relative event composition after event selection and reconstruction, by counting of MC templates. Fractions are in terms of percent. Data driven QCD process is included in e+jets channel only. The normalization of QCD follows the discussion of section [ref]. }
+\label{tab:mc_fractions}
+
+\end{table}
+
+\begin{figure}[h!]
+\includegraphics[width = 0.4\textwidth]{other/no_selection.jpg}
+\includegraphics[width = 0.45\textwidth]{other/cutflow_last_step_mu.pdf}
+\centering
+\caption{\small \small The $t\bar{t}$ invariant mass distributions of normalized signal and background Monte Carlo samples before event selection (a) and after event selection (b). }
+\label{tagging_results}
+\end{figure}
+
+% new plots
+\subsection{Control Plots}
+A set of control plots that compare MC and data distributions of several kinematic observables are shown in this section. All the plots are from events that passed all selection cuts, but before any further reconstruction quality cuts are made. 
+
+\begin{figure}[htb]
+\includegraphics[width = 0.48\textwidth]{mu/lep_pt_mu}
+\includegraphics[width = 0.48\textwidth]{el/lep_pt_el}
+\centering
+\caption{\small \small The e/$\mu$ $p_T$ distributions of normalized signal and background Monte Carlo samples after event selection, for $mu$+jets channel (a) and e+jets(b). }
+\label{fig:lep_pt}
+\end{figure}
+
+\begin{figure}[htb]
+\includegraphics[width = 0.48\textwidth]{mu/jets_pt_mu}
+\includegraphics[width = 0.48\textwidth]{el/jets_pt_el}
+\centering
+\caption{\small \small The jets $p_T$ distributions of normalized signal and background Monte Carlo samples after event selection, for $mu$+jets channel (a) and e+jets(b). }
+\label{fig:jets_pt}
+\end{figure}
+
+\begin{figure}[htb]
+\includegraphics[width = 0.48\textwidth]{mu/MET_mu}
+\includegraphics[width = 0.48\textwidth]{el/MET_el}
+\centering
+\caption{\small \small The MET distributions of normalized signal and background Monte Carlo samples after event selection, for $mu$+jets channel (a) and e+jets(b). }
+\label{fig:met}
+\end{figure}
+

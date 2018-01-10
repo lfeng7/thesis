@@ -1,0 +1,130 @@
+\documentclass[12pt,a4paper,oneside,final]{thesis}
+\usepackage[superscript]{cite}
+\usepackage{amsmath,amsfonts}
+\usepackage{graphicx}
+\usepackage{verbatim} 
+\graphicspath{{./figs/}}
+\usepackage{fixltx2e}
+\usepackage{array}
+\usepackage{wrapfig} 
+\usepackage{upgreek}
+\usepackage{hyperref}
+\usepackage{cleveref}
+\usepackage[section]{placeins}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{hyperref} 
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{rotating,booktabs}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{longtable}
+\usepackage[font=singlespacing, labelfont=bf]{caption}
+\usepackage{enumitem}
+\usepackage{bm}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{physics}
+%\usepackage{feynmp-auto} % or feynmf
+
+\newlist{inlinelist}{enumerate*}{1}
+\setlist*[inlinelist,1]{
+  label=(\arabic*),
+}
+
+\usepackage{amsmath}
+\usepackage{graphics, amssymb}
+
+\usepackage{fancyhdr}    % Use nice looking headers along with the required footer page numbers   
+%\usepackage[hypertex]{hyperref}
+%Define the header/footer style
+%\pagestyle{fancy}
+\fancyhf{}
+\setlength{\headheight}{15pt}
+\lhead{\leftmark}
+\cfoot{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\fancypagestyle{plain}{% Redefine ``plain'' style for chapter boundaries
+\fancyhf{} % clear all header and footer fields
+\fancyfoot[C]{\thepage} % except the center
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}}
+
+\newenvironment{outerlist}[1][\enskip\textbullet]%
+        {\begin{itemize}[#1,leftmargin=*]}{\end{itemize}%
+         \vspace{-.6\baselineskip}}
+         
+%\tolerance=10000
+
+%\makeglossary % enable the glossary
+
+\begin{document}
+
+\title{Measurement of $\ttbar$ Forward-backward Asymmetry in Large Hadron Collider }
+\author{Lei Feng}
+\degreemonth{January}
+\degreeyear{2018} 
+\dissertation
+\doctorphilosophy
+\copyrightnotice
+
+\include{notations} %some HEP notations, optional
+
+
+% add your chapters, best way is to have separate TeX files for each chapter
+\input{chapters/header} 
+\input{chapters/theory} 
+\input{chapters/top_pheno} 
+\input{chapters/apparatus} 
+\input{chapters/Data_MC}
+\input{chapters/Object_reco} 
+\input{chapters/AFB_measurement}
+\input{chapters/Conclusion_and_Outlook}  
+
+%\input{chapters/appendix}
+
+%% REFERENCES
+\bibliographystyle{plain}
+\bibliography{ref}
+
+
+
+%\begin{vita}
+%
+%\section*{Education}
+%\begin{itemize}
+%     \item Ph.D. Experimental Particle Physics, Johns Hopkins University, August 2017.
+%     \item B.Sc., with First Class Honor, double major in physics and mathematics, the University of Hong Kong, June 2011.
+%\end{itemize}
+%   
+%\section*{Work Experience}
+%\begin{itemize}
+%     \item Research/Teaching Assistant, Johns Hopkins University, January 2012 - June 2017.
+%     \item Research Assistant, European Organization for Nuclear Research, January 2015 - December 2015.
+%     \item Undergraduate Research Assistant, The University of Hong Kong, June 2009 - December 2010.
+%     \item Summer Student, European Organization for Nuclear Research, Geneva, July 2010 - August 2010.
+%\end{itemize}
+%
+%\section*{Conferences and Workshops}
+%\begin{itemize}
+%     \item CMS Data Analysis School, Fermilab, January 2013.
+%     \item LHCC Meeting, Geneva, Switzerland, March 2015.
+%     \item CERN-Fermilab Hadron Collider Physics Summer School, Geneva, Switzerland, July 2015. 
+%     \item Yandex MLHEP Machine Learning Workshop, St Petersburg, Russua, August 2015.
+%     \item Higgs Coupling 2015, Durham, UK, October 2015.
+%\end{itemize}
+%
+%\section*{Publications}
+%\begin{itemize}
+%     \item ``Search for new diboson resonances in the dilepton + jets final state at $\sqrt{s}=13$ TeV with 2016 data'', The CMS Collaboration, preprint CMS-PAS-HIG-16-034
+%     \item ``Measurements of properties of the Higgs boson and search for an additional resonance in the four-lepton final state  at $\sqrt{s}=13$ TeV'', The CMS Collaboration, preprint CMS-PAS-HIG-16-033
+%     \item ``Constraints on the spin-parity and anomalous HVV couplings of the Higgs boson in proton collisions at 7 and 8 TeV'', The CMS Collaboration, Phys. Rev. D 92, 012004 (2015)
+%     \item ``Measurement of the properties of a Higgs boson in the four-lepton final state'', The CMS Collaboration, Phys. Rev. D 89, 092007 (2014)
+%     \item ``CMS Tracker Alignment Performance Results Summer 2016'', The CMS Collaboration, CMS-DP-2016-063
+%     \item ``Alignment of the CMS Tracking-Detector with First 2015 Cosmic-Ray and Collision Data'', The CMS Collaboration, CMS-DP-2015-029
+%\end{itemize}
+%
+%\end{vita}
+
+\end{document}

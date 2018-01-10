@@ -1,0 +1,90 @@
+\clearpage
+
+\section{Kinematic Reconstruction of t-tbar events}
+% 1. Reconstruction of t-tbar momentums
+% 2. Colin-Soper Frame, production angle, Mtt, Xf etc
+% 3. Effect of Reconstruction / Control Plots
+
+\subsection{Method}
+\label{sec:reconstruction}
+
+Real and simulated events containing a charged lepton and four or five jets are reconstructed by minimizing a likelihood estimator that is a function of the neutrino longitudinal momentum $p_\nu^z$ and five momentum scaling factors $\lambda_j$.  For each final state particle assignment hypothesis, the 4-vectors of the charged particles are each momentum-scaled,
+\begin{equation}
+\begin{array}{lll}
+\boldsymbol{p_\ell} = \left(\lambda_1|\vec p_\ell |, \lambda_1\vec p_\ell\right) & &
+\boldsymbol{p_{b\ell}} = \left(\sqrt{m_b^2+\lambda_2^2|\vec p_{b\ell}|^2}, \lambda_2\vec p_{b\ell}\right)  \\
+\boldsymbol{p_{h1}} = \left(\lambda_3|\vec p_{h1} |, \lambda_3\vec p_{h1}\right) &
+\boldsymbol{p_{h2}} = \left(\lambda_4|\vec p_{h2} |, \lambda_4\vec p_{h2}\right) &
+\boldsymbol{p_{bh}} = \left(\sqrt{m_b^2+\lambda_5^2|\vec p_{bh}|^2}, \lambda_5\vec p_{bh}\right)
+\end{array}
+\end{equation}
+
+and the neutrino is constructed from the missing transverse momentum after scaling
+\begin{align}
+\vec p^\perp_\nu &= -\left[\lambda_1 \vec p^\perp_\ell + \lambda_2\vec p^\perp_{b\ell}+ \lambda_3\vec p^\perp_{h1}
++ \lambda_4\vec p^\perp_{h2}+ \lambda_5\vec p^\perp_{bh} + \vec p^\perp_\mathrm{recoil}\right ] \nonumber \\
+\boldsymbol{p_\nu} &= \left(\sqrt{(p_\nu^z)^2+|p^\perp_\nu |^2}, \vec p^\perp\nu, p_\nu^z\right)
+\end{align}
+where $\vec p^\perp_\mathrm{recoil}$ is the total transverse momentum of the event after the removal of the five particles.  The six scaled and reconstructed four-vectors are used to calculate the following four invariant masses to be used in the likelihood function,
+\begin{equation}
+\begin{array} {ll}
+q_W^2[\ell] = \left(\boldsymbol{p_\ell}+\boldsymbol{p_\nu}\right)^2 & q_t^2[\ell] = \left(\boldsymbol{p_\ell}+\boldsymbol{p_\nu}+\boldsymbol{p_{b\ell}}\right)^2  \\
+q_W^2[h] = \left(\boldsymbol{p_{h1}}+\boldsymbol{p_{h2}}\right)^2 & q_t^2[h] = \left(\boldsymbol{p_{h1}}+\boldsymbol{p_{h2}}+\boldsymbol{p_{bh}}\right)^2 
+\end{array}
+\end{equation}
+where the invariant masses of the hadronic $W$ boson (top quark) are functions of the parameters $\lambda_3,\lambda_4(,\lambda_5)$ and the invariant masses of the leptonic states depend upon all six parameters.  These are combined in a likelihood function that constrains and tests the consistency of the masses with the hypothesis, the consistency of the momentum scaling factors with unity, and the consistency of the b-jet identification with the measured b-tag discriminators $d_j$,
+\begin{align}
+\chi^2 =& -2\sum_{i=\ell,\mathrm{h}}\ln\left\lbrace\frac{C}{(q_t^2[i]-m_t^2)^2+m_t^2\Gamma_t^2}\cdot\frac{(m_t^2-q_W^2[i])^2(2m_t^2+q_W^2[i])}{(q_W^2[i]-m_W^2)^2+m_W^2\Gamma_W^2}\right\rbrace + \sum_{j=1}^5\frac{(\lambda_j-1)^2}{\sigma_j^2} \nonumber \\
+& -2\ln\left\{g_{b}(d_{b\ell})g_{b}(d_{bh})g_{q}(d_{h1})g_{q}(d_{h2})\right\}
+\end{align}
+where $C$ is a constant normalization parameter, $\sigma_j$ is the fractional momentum resolution for particle $j$ (assumed to be 0.1 for jets and 0.03 for muons), $g_{b}(d)$ are discriminator distribution functions for b-jets from $t$ decays, and $g_{q}(d)$ is the discriminator distribution function for light quark jets from $W$ decays.  In events with an extra jet, a discriminator distribution function $g_{other}(d)$ for jets produced in association with $t\bar{t}$ pairs is also used. These discriminator distribution functions are pictured in Fig.~\ref{fig:CSV_distributions} to illustrate the distinction they provide. 
+
+\begin{figure}[hbt]
+  \begin{center}
+    \includegraphics[width=0.6\linewidth]{other/csv_distributions.pdf}
+  \caption{\small The CSV discriminator distribution functions used in the kinematic fit to distinguish b jets [red] from hadronic W subjets [blue] and incidental extra jets [green].}
+    \label{fig:CSV_distributions}
+  \end{center}
+\end{figure}
+
+The minimization procedure is started assuming that all momentum scaling factors are unity, $\lambda_j=1$.  With this assumption, the leptonic $W$ mass constraint has, in general, two solutions for $p_\nu^z$.  To avoid local minima, both solutions are used as starting points for the minimization procedure and the resulting fit with the smallest $\chi^2$ is kept.  This function was designed to constrain the top masses with simple Lorentzian functions that include widths and the $W$ masses to the slightly modified and correlated Lorentzian shapes expected for $t\to Wb$ decays.  In actual fact, the presence of the momentum scaling factors allows the best fit masses to converge to $m_t$ and $m_W$ in all cases. In both data and simulation, we use the accepted value of the $W$ mass, $m_W = 80.4$~GeV. We assume $m_t=172.5$~GeV and $m_t=173.3$~GeV in simulation and data respectively.
+
+The fitting procedure is performed on all possible jet orderings for each of the topologies used in the analysis and the configuration with the smallest value of $\chi^2$ is retained. 
+
+\subsection{Performance of kinematic reconstruction}
+
+Based on the reconstructed top and anti-top momentum, the kinematic observables that are used for the $\AFB$ measurement , ($\xR$, $\mR$, $\cR$) can be constructed. The same set of variables can be constructed from the momentum of generated $\ttbar$ pairs, using the generator truth information included in the simulation. To evaluate the performance of the kinematic reconstruction, we compare the distribution of reconstructed kinematic variables with the generated ones, using the full set of simulated $\ttbar$ events. Note that generated $\xf$, $M$ are defined for all $\ttbar$ process regardless of its production mechanism, whereas generated $c_*$ is only well defined for $\qqTT$ process. As a result, the comparison of generated and reconstructed $c_*$ is based on $\qqTT$ simulated events, while $\xf$, $M$ is based on all semileptonic $\ttbar$ events. 
+
+The sensitivity and correctness of $\AFB$ measurement in this thesis relies on two performance metrics of kinematic reconstruction. The first metric is the resolution of reconstructed kinematic observables, which can be evaluated by plotting the residual, for example, $\cR - c_*$. A smaller variance of residual indicate a more accurate reconstruction of $\ttbar$ momentums. The second metric is the linearity of reconstructed versus generated observables. This can be checked by either the mean of the residuals, or the 2D plot.  
+
+The reconstruction of the kinematic variables works reasonably well.  The correlations of the generated variables ($\xf$, $M$, $c_*$) and the reconstructed variables ($\xR$, $\mR$, $\cR$) are shown in Fig.\ref{fig:cost_reco}.  Linear behavior with unit slopes is observed over the range of available statistics.  The $c_*$ versus $\cR$ also shows evidence of quark direction sign error as expected from Fig.~\ref{fig:distributions}(d).  
+
+% new plots
+\begin{figure}[hbt]
+  \begin{center}
+    \includegraphics[width=0.48\linewidth]{mu/xf_2D_mu}
+    \includegraphics[width=0.48\linewidth]{el/xf_2D_el}   
+    \includegraphics[width=0.48\linewidth]{mu/Mtt_2D_mu}
+    \includegraphics[width=0.48\linewidth]{el/Mtt_2D_el}
+    \includegraphics[width=0.48\linewidth]{mu/cstar_2D_mu}
+    \includegraphics[width=0.48\linewidth]{el/cstar_2D_el}
+  \caption{\small The correlations of the generated/reconstructed variable pairs $x_F$/$x_\mathrm{r}$ , $M$/$M_\mathrm{r}$ and $c_*$/$c_\mathrm{r}$ for a sample of simulated $t\bar t$ events. The figures at the left are from $\mu$+jets channel, at right are e+jets channel.}
+    \label{fig:cost_reco}
+  \end{center}
+\end{figure}
+
+We also further check the effectiveness of top quark pairs reconstruction by plotting the residual of $x_F$, $M_{t\bar{t}}$, $c_*$, shown in Fig.\ref{fig:reco_res}
+\begin{figure}[hbt]
+  \begin{center}
+    \includegraphics[width=0.48\linewidth]{mu/xf_res_mu}
+    \includegraphics[width=0.48\linewidth]{el/xf_res_el}   
+    \includegraphics[width=0.48\linewidth]{mu/Mtt_res_mu}
+    \includegraphics[width=0.48\linewidth]{el/Mtt_res_el}
+    \includegraphics[width=0.48\linewidth]{mu/cstar_res_mu}
+    \includegraphics[width=0.48\linewidth]{el/cstar_res_el}
+  \caption{\small The residual of the generated/reconstructed variable pairs $x_F$/$x_\mathrm{r}$ , $M$/$M_\mathrm{r}$ and $c_*$/$c_\mathrm{r}$ for a sample of simulated $t\bar t$ events. The figures at the left are from $\mu$+jets channel, at right are e+jets channel.}
+    \label{fig:reco_res}
+  \end{center}
+\end{figure}
+
+
